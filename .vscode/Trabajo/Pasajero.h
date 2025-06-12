@@ -22,7 +22,7 @@
         int getID();
         int getMinLlegada();
         int getDuracionControl();
-        string getPais();
+        string getPais() const;
         int getPrioridad();
         int getTiempoTotal();
 
