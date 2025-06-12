@@ -1,17 +1,17 @@
 #ifndef NODOPILA_H
 #define NODOPILA_H
 
-#include "Proceso.h"
+#include "Persona.h"
 
 class NodoPila {
 private:
-    Proceso valor;
+    Persona valor;
     NodoPila *siguiente; // Next
     friend class Pila; // Friend class
 
 public:
     NodoPila(); // Constructor vacío
-    NodoPila(Proceso p, NodoPila* sig = nullptr);
+    NodoPila(Persona p, NodoPila* sig = nullptr);
     ~NodoPila(); // Destructor
 };
 

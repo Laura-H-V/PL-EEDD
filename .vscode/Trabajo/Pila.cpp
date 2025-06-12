@@ -8,7 +8,7 @@ Pila::~Pila() {
     }
 }
 
-void Pila::apilar(Proceso v) {
+void Pila::apilar(Persona v) {
     pNodoPila nuevo = new NodoPila(v, nullptr);
 
     if (esVacia() || cima->valor.getInicio() >= v.getInicio()) {
@@ -39,7 +39,7 @@ bool Pila::esVacia() {
     return cima == nullptr;
 }
 
-Proceso* Pila::mostrar() {
+Persona* Pila::mostrar() {
     if (esVacia()) {
         std::cout << "La pila está vacía." << std::endl;
         return nullptr; // Retornar nullptr si la pila está vacía

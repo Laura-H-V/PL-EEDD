@@ -11,10 +11,10 @@ private:
 public:
     Pila(); // Constructor
     ~Pila(); // Destructor
-    void apilar(Proceso v);
+    void apilar(Persona v);
     void desapilar();
     bool esVacia();
-    Proceso* mostrar(); // Muestra el proceso en la cima
+    Persona* mostrar(); // Muestra el proceso en la cima
     int longitud(); // Devuelve la longitud de la pila
 };
 
