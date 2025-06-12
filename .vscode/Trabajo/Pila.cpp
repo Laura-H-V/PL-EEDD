@@ -8,20 +8,21 @@ Pila::~Pila() {
     }
 }
 
-void Pila::apilar(Persona v) {
+void Pila::apilar(Pasajero v) {
     pNodoPila nuevo = new NodoPila(v, nullptr);
 
-    if (esVacia() || cima->valor.getInicio() >= v.getInicio()) {
+    if (esVacia() || cima->valor.getMinLlegada() >= v.getMinLlegada()) {
         nuevo->siguiente = cima;
         cima = nuevo;
     } else {
         pNodoPila actual = cima;
-        while (actual->siguiente != nullptr && actual->siguiente->valor.getInicio() < v.getInicio()) {
+        while (actual->siguiente != nullptr && actual->siguiente->valor.getMinLlegada() < v.getMinLlegada()) {
             actual = actual->siguiente;
         }
         nuevo->siguiente = actual->siguiente;
         actual->siguiente = nuevo;
     }
+
 }
 
 void Pila::desapilar() {
@@ -39,7 +40,7 @@ bool Pila::esVacia() {
     return cima == nullptr;
 }
 
-Persona* Pila::mostrar() {
+Pasajero* Pila::mostrar() {
     if (esVacia()) {
         std::cout << "La pila está vacía." << std::endl;
         return nullptr; // Retornar nullptr si la pila está vacía

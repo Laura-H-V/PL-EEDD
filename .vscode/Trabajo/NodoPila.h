@@ -1,17 +1,17 @@
 #ifndef NODOPILA_H
 #define NODOPILA_H
 
-#include "Persona.h"
+#include "Pasajero.h"
 
 class NodoPila {
 private:
-    Persona valor;
+    Pasajero valor;
     NodoPila *siguiente; // Next
     friend class Pila; // Friend class
 
 public:
     NodoPila(); // Constructor vacío
-    NodoPila(Persona p, NodoPila* sig = nullptr);
+    NodoPila(Pasajero p, NodoPila* sig = nullptr);
     ~NodoPila(); // Destructor
 };
 
