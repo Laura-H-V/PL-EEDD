@@ -1,7 +1,7 @@
 #include "ABB.h"
 #include "NodoABB.h"
 
-ABB::ABB() //crea árbol vacío
+ABB::ABB() //crea arbol vacio
 {
     //ctor
     raiz=NULL;
@@ -11,7 +11,7 @@ ABB::ABB(NodoABB *r)
     raiz=r;
 
 }
-ABB::ABB(string nom, NodoABB *hIz, NodoABB *hDer)//constructor que crea árbolBin con dato y dos subárboles
+ABB::ABB(string nom, NodoABB *hIz, NodoABB *hDer)//constructor que crea ï¿½rbolBin con dato y dos subï¿½rboles
 {
     raiz= new NodoABB(nom, hIz, hDer);//llamamos al constructor del Nodo y raiz es un puntero al Nodo creado
 
@@ -24,7 +24,7 @@ ABB::~ABB()
 
 
 void ABB::verInOrden() { verInOrden(raiz);}
-void ABB::verInOrden(NodoABB *arb)// Método para ver Arbol empezando por su izquirda, después pasamos por la raiz y por ultimo por la rama derecha
+void ABB::verInOrden(NodoABB *arb)// Mï¿½todo para ver Arbol empezando por su izquirda, despuï¿½s pasamos por la raiz y por ultimo por la rama derecha
 {
     if (arb) {
        verInOrden(arb->hi);//Recursion para la rama izquierda
@@ -32,7 +32,7 @@ void ABB::verInOrden(NodoABB *arb)// Método para ver Arbol empezando por su izqu
         verInOrden(arb->hd);// Recursion para la rama derecha
     }
 }
-/*void ABB::verInOrdenABB()// Método para ver Arbol en inorden sin tener que pasar puntero, resulta farragoso crear objetos cada vez...
+/*void ABB::verInOrdenABB()// Mï¿½todo para ver Arbol en inorden sin tener que pasar puntero, resulta farragoso crear objetos cada vez...
 {
     if (raiz) {
             ABB hijoIz(raiz->hi);hijoIz.verInOrden();//Recursion para la rama izquierda
@@ -46,7 +46,7 @@ void ABB::insertar(string nombre)
 {
     insertar(nombre, raiz);
 }
-void ABB::insertar(string nombre, NodoABB *nodo)//En este método insertamos un nombre en el ABB para que siga ordenado
+void ABB::insertar(string nombre, NodoABB *nodo)//En este mï¿½todo insertamos un nombre en el ABB para que siga ordenado
 {
 
 
@@ -54,16 +54,16 @@ void ABB::insertar(string nombre, NodoABB *nodo)//En este método insertamos un n
         //((nombre.compare(nodo->nombre)==0) ||  (nombre.compare(nodo->nombre)<0)) usando funcion de string
 
 
-         { //Si el nombre del cliente es menor o igual al del nodo  raíz entoces comprobamos...
+         { //Si el nombre del cliente es menor o igual al del nodo  raï¿½z entoces comprobamos...
 
 
-        if (nodo->hi == NULL)//Si el nodo izquierdo está vacio entoces
+        if (nodo->hi == NULL)//Si el nodo izquierdo estï¿½ vacio entoces
         {
             //creo un objeto NodoABB para insertarlo en el ABB
         NodoABB *nuevo=new NodoABB(nombre);
         nodo->hi= nuevo;
         }
-            //Creamos un nuevo nodo e incluimos el cliente y el pedido en la lista (se crea vscía)
+            //Creamos un nuevo nodo e incluimos el cliente y el pedido en la lista (se crea vscï¿½a)
 
         else//En caso de que el nodo no estuviera vacio
         {
