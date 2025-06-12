@@ -14,6 +14,14 @@ NodoLista* NodoLista::obtenerSiguiente() {
     return siguiente;  // Devuelve el puntero al siguiente nodo
 }
 
+NodoLista* NodoLista::getSiguiente() const {
+    return siguiente;
+}
+
+NodoLista* NodoLista::getAnterior() const {
+    return anterior;
+}
+
 // Destructor
 NodoLista::~NodoLista() {
     siguiente = nullptr;

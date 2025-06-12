@@ -15,6 +15,8 @@ public:
     NodoLista(Box p, NodoLista* sig = nullptr, NodoLista* ant = nullptr);
     Box& obtenerValor(); // Obtener el valor del nodo
     NodoLista* obtenerSiguiente();
+    NodoLista* getSiguiente() const;
+    NodoLista* getAnterior() const;
     ~NodoLista(); // Destructor
 };
 

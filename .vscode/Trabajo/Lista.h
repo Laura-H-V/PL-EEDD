@@ -3,7 +3,7 @@
 
 #include "NodoLista.h"
 #include "Box.h"
-#include "Persona.h"
+#include "Pasajero.h"
 #include <iostream>
 
 class Lista {

@@ -1,4 +1,5 @@
 #include "Lista.h"
+#include "Box.h"
 
 Lista::Lista() : cabeza(nullptr), cola(nullptr) {}
 
@@ -53,7 +54,7 @@ void Lista::eliminar(Box v) {
     if (esVacia()) return;
 
     pNodoLista actual = cabeza;
-    while (actual != nullptr && actual->valor.getId() != v.getId()) {
+    while (actual != nullptr && actual->valor.getIDBox() != v.getIDBox()) {
         actual = actual->siguiente;
     }
     if (actual == nullptr) return;
@@ -78,7 +79,7 @@ bool Lista::esVacia() {
 Box* Lista::buscar(int id) {
     pNodoLista actual = cabeza;  // Comienza desde el primer nodo de la lista
     while (actual != nullptr) {  // Recorre la lista hasta el final
-        if (actual->valor.getId() == id) {  // Compara el ID del núcleo con el ID que estamos buscando
+        if (actual->valor.getIDBox() == id) {  // Compara el ID del núcleo con el ID que estamos buscando
             return &actual->valor;  // Si encuentra el núcleo, retorna su dirección
         }
         actual = actual->siguiente;  // Avanza al siguiente nodo
@@ -89,7 +90,7 @@ Box* Lista::buscar(int id) {
 void Lista::mostrar() {
     pNodoLista actual = cabeza;
     while (actual != nullptr) {
-        std::cout << actual->valor.getId() << " ";
+        std::cout << actual->valor.getIDBox() << " ";
         actual = actual->siguiente;
     }
     std::cout << std::endl;
@@ -110,13 +111,13 @@ Box Lista::inicio() {
     if (!esVacia() && cabeza != nullptr) {
         Box box = cabeza->valor; // Obtén el núcleo desde el nodo cabeza
 
-        if (box.estaLibre() && !box.colaEsperaBox.es_vacia()) { 
+        if (box.estaLibre() && !box.getColaEsperaBox().es_vacia()) { 
             // Si el núcleo está libre y la cola no está vacía
-            Persona persona = box.colaEsperaBox.inicio(); // Obtén el primer proceso de la cola
-            box.asignarProceso(&persona); // Asigna el proceso al núcleo
+            Pasajero pasajero = box.getColaEsperaBox().inicio(); // Obtén el primer proceso de la cola
+            box.asignarPasajero(&pasajero); // Asigna el proceso al núcleo
         }
         
-        return nucleo;
+        return box;
     }
     return Box();  // Devuelve un núcleo vacío si la lista está vacía
 }
@@ -126,10 +127,10 @@ Box Lista::fin() {
     if (!esVacia() && cola != nullptr) {
         Box box = cola->valor; // Obtén el núcleo desde el nodo cola
 
-        if (box.estaLibre() && !nucleo.colaEsperaBox.es_vacia()) { 
+        if (box.estaLibre() && !box.getColaEsperaBox().es_vacia()) { 
             // Si el núcleo está libre y la cola no está vacía
-            Persona persona = nucleo.colaEsperaBox.fin(); // Obtén el último proceso de la cola
-            nucleo.asignarProceso(&persona); // Asigna el proceso al núcleo
+            Pasajero pasajero = box.getColaEsperaBox().fin(); // Obtén el último proceso de la cola
+            box.asignarPasajero(&pasajero); // Asigna el proceso al núcleo
         }
         
         return box;

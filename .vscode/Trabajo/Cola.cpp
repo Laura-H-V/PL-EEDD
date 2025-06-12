@@ -62,25 +62,27 @@ Pasajero Cola::desencolar()
     return Pasajero();
 }
 
-Pasajero Cola::inicio(){ 
-    if(!es_vacia()){ 
+Pasajero Cola::inicio() const { 
+    if (!es_vacia()) {
         return primero->elemento;
     }
-    return Pasajero();
+    return Pasajero(); // Retorna un pasajero vacío si la cola está vacía
 }
 
-Pasajero Cola::fin(){ 
+Pasajero Cola::fin() const{ 
     if(!es_vacia())
     { return ultimo->elemento;
     }
     return Pasajero();
 }
 
-int Cola::get_longitud(){ 
+int Cola::get_longitud() const { 
+        // Devuelve la longitud de la cola
+        // No es necesario recorrer la cola, ya que se mantiene un contador de longitud
     return longitud;
     }
 
-bool Cola::es_vacia(){ 
+bool Cola::es_vacia() const{ 
     return ((primero == NULL) && (ultimo == NULL));
 }
 
