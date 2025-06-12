@@ -10,7 +10,7 @@ Cola::Cola()
 
 Cola::~Cola() { } //desencolar () cuando hay elementos
 
-    void Cola::encolar(Proceso elemento, int prioridad)
+    void Cola::encolar(Persona elemento, int prioridad)
 {   NodoCola *nuevo_nodo = new NodoCola(elemento, prioridad);
     if (es_vacia()) {
         primero = nuevo_nodo;
@@ -38,9 +38,9 @@ Cola::~Cola() { } //desencolar () cuando hay elementos
     longitud++;
 }
 
-Proceso Cola::desencolar()
+Persona Cola::desencolar()
 {   if(!es_vacia()){ 
-        Proceso elemento = primero->elemento;
+        Persona elemento = primero->elemento;
         NodoCola *aux = primero;
         if((primero == ultimo) && (primero->siguiente == NULL)){
              primero = NULL;
@@ -56,21 +56,21 @@ Proceso Cola::desencolar()
         longitud--;
         return elemento;
     }
-    return Proceso();
+    return Persona();
 }
 
-Proceso Cola::inicio(){ 
+Persona Cola::inicio(){ 
     if(!es_vacia()){ 
         return primero->elemento;
     }
-    return Proceso();
+    return Persona();
 }
 
-Proceso Cola::fin(){ 
+Persona Cola::fin(){ 
     if(!es_vacia())
     { return ultimo->elemento;
     }
-    return Proceso();
+    return Persona();
 }
 
 int Cola::get_longitud(){ 

@@ -2,11 +2,11 @@
 
 NodoCola::NodoCola(){
     prioridad = 0;
-    elemento = Proceso();
+    elemento = Persona();
     siguiente = NULL;
     //constructor por defecto
     }
-    NodoCola::NodoCola(Proceso e, int prioridad, NodoCola*sig )
+    NodoCola::NodoCola(Persona e, int prioridad, NodoCola*sig )
     {
     elemento = e;
     siguiente = sig;

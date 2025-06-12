@@ -4,10 +4,10 @@
 NodoLista::NodoLista() : valor(), siguiente(nullptr), anterior(nullptr) {}
 
 // Constructor con parámetros
-NodoLista::NodoLista(Nucleo p, NodoLista* sig, NodoLista* ant) 
+NodoLista::NodoLista(Box p, NodoLista* sig, NodoLista* ant) 
     : valor(p), siguiente(sig), anterior(ant) {}
 
-Nucleo& NodoLista::obtenerValor() {
+Box& NodoLista::obtenerValor() {
     return valor;  // Devuelve una referencia al atributo valor
 }
 NodoLista* NodoLista::obtenerSiguiente() {

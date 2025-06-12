@@ -12,7 +12,7 @@ Lista::~Lista() {
 }
 
 //Insertar izquierda
-void Lista::insertarInicio(Nucleo v) {
+void Lista::insertarInicio(Box v) {
     pNodoLista nuevo = new NodoLista(v, cabeza, nullptr);
     if (esVacia()) {
         cabeza = cola = nuevo;
@@ -23,7 +23,7 @@ void Lista::insertarInicio(Nucleo v) {
 }
 
 //Insertar derecha
-void Lista::insertarFinal(Nucleo v) {
+void Lista::insertarFinal(Box v) {
     pNodoLista nuevo = new NodoLista(v, nullptr, cola);
     if (esVacia()) {
         cabeza = cola = nuevo;
@@ -33,7 +33,7 @@ void Lista::insertarFinal(Nucleo v) {
     }
 }
 
-void Lista::insertarEnPosicion(Nucleo v, int pos) {
+void Lista::insertarEnPosicion(Box v, int pos) {
     if (pos <= 0) {
         insertarInicio(v);
     } else if (pos >= longitud()) {
@@ -49,7 +49,7 @@ void Lista::insertarEnPosicion(Nucleo v, int pos) {
     }
 }
 
-void Lista::eliminar(Nucleo v) {
+void Lista::eliminar(Box v) {
     if (esVacia()) return;
 
     pNodoLista actual = cabeza;
@@ -75,7 +75,7 @@ bool Lista::esVacia() {
     return cabeza == nullptr;
 }
 
-Nucleo* Lista::buscar(int id) {
+Box* Lista::buscar(int id) {
     pNodoLista actual = cabeza;  // Comienza desde el primer nodo de la lista
     while (actual != nullptr) {  // Recorre la lista hasta el final
         if (actual->valor.getId() == id) {  // Compara el ID del núcleo con el ID que estamos buscando
@@ -106,35 +106,35 @@ int Lista::longitud() {
 }
 
 // Devuelve el núcleo basado en el proceso del nodo cabeza
-Nucleo Lista::inicio() {
+Box Lista::inicio() {
     if (!esVacia() && cabeza != nullptr) {
-        Nucleo nucleo = cabeza->valor; // Obtén el núcleo desde el nodo cabeza
+        Box box = cabeza->valor; // Obtén el núcleo desde el nodo cabeza
 
-        if (nucleo.estaLibre() && !nucleo.colaEsperaNucleo.es_vacia()) { 
+        if (box.estaLibre() && !box.colaEsperaBox.es_vacia()) { 
             // Si el núcleo está libre y la cola no está vacía
-            Proceso proceso = nucleo.colaEsperaNucleo.inicio(); // Obtén el primer proceso de la cola
-            nucleo.asignarProceso(&proceso); // Asigna el proceso al núcleo
+            Persona persona = box.colaEsperaBox.inicio(); // Obtén el primer proceso de la cola
+            box.asignarProceso(&persona); // Asigna el proceso al núcleo
         }
         
         return nucleo;
     }
-    return Nucleo();  // Devuelve un núcleo vacío si la lista está vacía
+    return Box();  // Devuelve un núcleo vacío si la lista está vacía
 }
 
 // Devuelve el núcleo basado en el proceso del nodo cola
-Nucleo Lista::fin() {
+Box Lista::fin() {
     if (!esVacia() && cola != nullptr) {
-        Nucleo nucleo = cola->valor; // Obtén el núcleo desde el nodo cola
+        Box box = cola->valor; // Obtén el núcleo desde el nodo cola
 
-        if (nucleo.estaLibre() && !nucleo.colaEsperaNucleo.es_vacia()) { 
+        if (box.estaLibre() && !nucleo.colaEsperaBox.es_vacia()) { 
             // Si el núcleo está libre y la cola no está vacía
-            Proceso proceso = nucleo.colaEsperaNucleo.fin(); // Obtén el último proceso de la cola
-            nucleo.asignarProceso(&proceso); // Asigna el proceso al núcleo
+            Persona persona = nucleo.colaEsperaBox.fin(); // Obtén el último proceso de la cola
+            nucleo.asignarProceso(&persona); // Asigna el proceso al núcleo
         }
         
-        return nucleo;
+        return box;
     }
-    return Nucleo();  // Devuelve un núcleo vacío si la lista está vacía
+    return Box();  // Devuelve un núcleo vacío si la lista está vacía
 }
 
 pNodoLista Lista::obtenerCabeza() const {
