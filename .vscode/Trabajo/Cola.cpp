@@ -8,9 +8,12 @@ Cola::Cola()
     longitud = 0;
 }
 
-Cola::~Cola() { } //desencolar () cuando hay elementos
+Cola::~Cola() { while (!es_vacia()) {  //Cambiado!!!!!!!
+        desencolar();
+    } 
+} //desencolar () cuando hay elementos
 
-    void Cola::encolar(Persona elemento, int prioridad)
+    void Cola::encolar(Pasajero elemento, int prioridad)
 {   NodoCola *nuevo_nodo = new NodoCola(elemento, prioridad);
     if (es_vacia()) {
         primero = nuevo_nodo;
@@ -38,9 +41,9 @@ Cola::~Cola() { } //desencolar () cuando hay elementos
     longitud++;
 }
 
-Persona Cola::desencolar()
+Pasajero Cola::desencolar()
 {   if(!es_vacia()){ 
-        Persona elemento = primero->elemento;
+        Pasajero elemento = primero->elemento;
         NodoCola *aux = primero;
         if((primero == ultimo) && (primero->siguiente == NULL)){
              primero = NULL;
@@ -56,21 +59,21 @@ Persona Cola::desencolar()
         longitud--;
         return elemento;
     }
-    return Persona();
+    return Pasajero();
 }
 
-Persona Cola::inicio(){ 
+Pasajero Cola::inicio(){ 
     if(!es_vacia()){ 
         return primero->elemento;
     }
-    return Persona();
+    return Pasajero();
 }
 
-Persona Cola::fin(){ 
+Pasajero Cola::fin(){ 
     if(!es_vacia())
     { return ultimo->elemento;
     }
-    return Persona();
+    return Pasajero();
 }
 
 int Cola::get_longitud(){ 
@@ -92,7 +95,7 @@ void Cola::mostrarCola()
     else {
         std::cout<<"Datos de la Cola: "<<std::endl;
         while (aux){
-            std::cout << aux->elemento.getPID()<<std::endl;
+            std::cout << aux->elemento.getID()<<std::endl;
             aux = aux->siguiente;
         }
     }

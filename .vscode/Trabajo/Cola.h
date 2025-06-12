@@ -10,10 +10,10 @@ class Cola{
         int longitud;
     public:
         Cola(); ~Cola();
-        void encolar(Persona elemento, int prioridad);
-        Persona inicio();
-        Persona fin();
-        Persona desencolar();
+        void encolar(Pasajero elemento, int prioridad);
+        Pasajero inicio();
+        Pasajero fin();
+        Pasajero desencolar();
         int get_longitud();
         bool es_vacia();
         void mostrarCola(); //No es correcto, se implementa para ver que está creada correctamente
