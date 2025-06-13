@@ -13,7 +13,7 @@ Pasajero::Pasajero(int ID, int minLlegada, int duracionControl, string pais, int
 int Pasajero::getID() { return ID; }
 int Pasajero::getMinLlegada() { return minLlegada; }
 int Pasajero::getDuracionControl() { return duracionControl; }
-string Pasajero::getPais() { return pais; }
+string Pasajero::getPais() const{ return pais; }
 int Pasajero::getPrioridad()  { return prioridad; }
 int Pasajero::getTiempoTotal()  { return tiempoTotal; }
 
