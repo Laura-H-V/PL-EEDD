@@ -16,6 +16,8 @@ class ABB
         NodoABB* buscar(string pais);
         NodoABB* buscar(string pais, NodoABB* nodo);
 
+        void mostrarPasajerosPorPais(string pais);
+
 
        // void verInOrdenABB();
         void insertar(string nom);

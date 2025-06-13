@@ -103,5 +103,17 @@ NodoABB* ABB::buscar(string pais, NodoABB* nodo) {
     return buscar(pais, nodo->hd);
 }
 
+void ABB::mostrarPasajerosPorPais(string pais) {
+    NodoABB* nodoDestino = buscar(pais); // Buscamos el nodo del país en el ABB
+    if (nodoDestino == nullptr) {
+        cout << "No hay pasajeros con destino a " << pais << "." << endl;
+        return;
+    }
+
+    cout << "Pasajeros con destino a " << pais << ":" << endl;
+    nodoDestino->listaPasajerosDestino.mostrarLista(); // Mostrar la lista de pasajeros del nodo
+}
+
+
 
 
