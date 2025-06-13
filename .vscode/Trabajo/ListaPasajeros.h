@@ -22,8 +22,11 @@ public:
     void insertarPasajero(const Pasajero& p);
     void eliminarPasajero(int id);
     Pasajero* buscarPasajero(int id);
+    Pasajero* buscarPasajeroPorIndice(int index);
     bool esVacia() const;
     int contarPasajeros() const;
+    Pasajero* buscarPasajeroPorID(int id);
+
 
     // Métodos relacionados con ABB
     void agregarAlABB(const Pasajero& p);

@@ -1,5 +1,8 @@
 #include "ABB.h"
 #include "NodoABB.h"
+#include "Pasajero.h"
+#include "ListaPasajeros.h"
+
 
 ABB::ABB() //crea arbol vacio
 {
@@ -113,6 +116,65 @@ void ABB::mostrarPasajerosPorPais(string pais) {
     cout << "Pasajeros con destino a " << pais << ":" << endl;
     nodoDestino->listaPasajerosDestino.mostrarLista(); // Mostrar la lista de pasajeros del nodo
 }
+
+
+
+
+void ABB::calcularTiempoMedioPorPais() {
+    calcularTiempoMedioPorPais(raiz);
+}
+
+void ABB::calcularTiempoMedioPorPais(NodoABB* nodo) {
+    if (nodo == nullptr) {
+        return;
+    }
+
+    // Obtener la lista de pasajeros del país
+    ListaPasajeros& lista = nodo->listaPasajerosDestino;
+    int totalTiempo = 0;
+    int cantidadPasajeros = lista.contarPasajeros();
+
+    if (cantidadPasajeros > 0) {
+        for (int i = 0; i < cantidadPasajeros; i++) {
+            totalTiempo += lista.buscarPasajeroPorIndice(i)->calcularTiempoEstancia();
+        }
+        double tiempoMedio = static_cast<double>(totalTiempo) / cantidadPasajeros;
+        cout << "País: " << nodo->nombre << " | Tiempo medio de estancia: " << tiempoMedio << " minutos" << endl;
+    }
+
+    // Recorrer en preorden: primero izquierda, luego derecha
+    calcularTiempoMedioPorPais(nodo->hi);
+    calcularTiempoMedioPorPais(nodo->hd);
+}
+
+Pasajero* ABB::buscarPasajero(int id) {
+    return buscarPasajero(id, raiz);
+}
+
+Pasajero* ABB::buscarPasajero(int id, NodoABB* nodo) {
+    if (nodo == nullptr) {
+        return nullptr; // Si el nodo es nulo, el pasajero no está en el árbol.
+    }
+
+    // Buscar en la lista de pasajeros de este nodo
+    Pasajero* encontrado = nodo->listaPasajerosDestino.buscarPasajeroPorID(id);
+    if (encontrado != nullptr) {
+        cout << "Pasajero encontrado: ID " << encontrado->getID()
+             << ", País: " << nodo->nombre
+             << ", Tiempo de estancia: " << encontrado->calcularTiempoEstancia() << " minutos." << endl;
+        return encontrado;
+    }
+
+    // Recorrer el árbol en búsqueda del pasajero en otros nodos
+    Pasajero* izq = buscarPasajero(id, nodo->hi);
+    if (izq != nullptr) return izq;
+
+    return buscarPasajero(id, nodo->hd);
+}
+
+
+
+
 
 
 

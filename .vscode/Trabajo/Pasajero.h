@@ -25,6 +25,8 @@
         string getPais() const;
         int getPrioridad();
         int getTiempoTotal();
+        int calcularTiempoEstancia() const;
+
 
 
         // Métodos de modificación

@@ -99,3 +99,20 @@ void ListaPasajeros::mostrarLista() {
         cout << "ID: " << listaPasajeros[i].getID() << ", Destino: " << listaPasajeros[i].getPais() << endl;
     }
 }
+
+Pasajero* ListaPasajeros::buscarPasajeroPorIndice(int index) {
+    if (index < 0 || index >= cantidad) {
+        return nullptr; // Verifica que el índice sea válido
+    }
+    return &listaPasajeros[index]; // Retorna la dirección del pasajero en la posición deseada
+}
+
+Pasajero* ListaPasajeros::buscarPasajeroPorID(int id) {
+    for (int i = 0; i < contarPasajeros(); i++) {
+        if (listaPasajeros[i].getID() == id) {
+            return &listaPasajeros[i];
+        }
+    }
+    return nullptr; // Si no se encuentra el pasajero, retorna nullptr.
+}
+

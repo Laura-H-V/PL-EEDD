@@ -26,7 +26,11 @@ void Pasajero::setPais(string p) { pais = p; }
 void Pasajero::setPrioridad(int p) { prioridad = p; }
 void Pasajero::setIDBox(int idBox) { IDBox = idBox; }
 void Pasajero::setTiempoTotal(int tiempo) { tiempoTotal = tiempo; }
-void Pasajero::setSalidaBox(int salida) { tiempoTotal = salida; } 
+void Pasajero::setSalidaBox(int salida) { tiempoTotal = salida; }
+ 
+// Calcula la duración de estancia en el aeropuerto
+int Pasajero::calcularTiempoEstancia() const {return tiempoTotal - minLlegada;}
 
 // Destructor
 Pasajero::~Pasajero() {}
+

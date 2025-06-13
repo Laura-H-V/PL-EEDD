@@ -3,6 +3,7 @@
 #include "NodoABB.h"
 
 
+
 class ABB
 {
     public:
@@ -13,10 +14,17 @@ class ABB
         void verInOrden();
         void verInOrden(NodoABB *arb);
 
+        
         NodoABB* buscar(string pais);
         NodoABB* buscar(string pais, NodoABB* nodo);
 
         void mostrarPasajerosPorPais(string pais);
+
+        void calcularTiempoMedioPorPais();
+        void calcularTiempoMedioPorPais(NodoABB* nodo);
+
+        Pasajero* buscarPasajero(int id);
+        Pasajero* buscarPasajero(int id, NodoABB* nodo);
 
 
        // void verInOrdenABB();
