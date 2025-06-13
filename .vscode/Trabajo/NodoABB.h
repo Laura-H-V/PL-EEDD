@@ -2,6 +2,7 @@
 #define NODOABB_H
 #include <iostream>
 #include <stdio.h>
+//#include "ListaPasajeros.h"
 
 
 using namespace std;
@@ -17,6 +18,7 @@ class NodoABB
 
     private:
         string nombre;
+        //ListaPasajeros listaPasajerosDestino; // lista de pasajeros con este destino
         NodoABB *hi, *hd;
 };
 
