@@ -13,12 +13,12 @@ class NodoABB
         NodoABB(string nom, NodoABB *izq=NULL, NodoABB *der=NULL);
         virtual ~NodoABB();
         void verNombre();
-
+        void agregarPasajero(const Pasajero& p);
 
 
     private:
         string nombre;
-        //ListaPasajeros listaPasajerosDestino; // lista de pasajeros con este destino
+        ListaPasajeros listaPasajerosDestino; // lista de pasajeros con este destino
         NodoABB *hi, *hd;
 };
 

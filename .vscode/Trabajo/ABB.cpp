@@ -89,3 +89,19 @@ void ABB::insertar(string nombre, NodoABB *nodo)//En este m�todo insertamos un
 }
 
 
+NodoABB* ABB::buscar(string pais) {
+    return buscar(pais, raiz);
+}
+
+NodoABB* ABB::buscar(string pais, NodoABB* nodo) {
+    if (nodo == nullptr || nodo->nombre == pais) {
+        return nodo; // Si el nodo es nulo o encontramos el país, lo devolvemos
+    }
+    if (pais < nodo->nombre) {
+        return buscar(pais, nodo->hi);
+    }
+    return buscar(pais, nodo->hd);
+}
+
+
+

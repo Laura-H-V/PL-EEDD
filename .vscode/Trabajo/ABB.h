@@ -13,6 +13,9 @@ class ABB
         void verInOrden();
         void verInOrden(NodoABB *arb);
 
+        NodoABB* buscar(string pais);
+        NodoABB* buscar(string pais, NodoABB* nodo);
+
 
        // void verInOrdenABB();
         void insertar(string nom);
