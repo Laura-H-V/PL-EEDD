@@ -35,7 +35,6 @@
         void setPrioridad(int prioridad);
         void setSalidaBox(int salida);
         void setIDBox(int IDBox);
-        void setPrioridad(int prioridad);
         void setTiempoTotal(int tiempo);
 
         ~Pasajero(); // Destructor
