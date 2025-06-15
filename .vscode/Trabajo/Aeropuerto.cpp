@@ -6,9 +6,34 @@ using namespace std;
 Aeropuerto::Aeropuerto() {}
 
 void Aeropuerto::crearPilaPasajeros() {
-    cout << "Creando pila de pasajeros..." << endl;
-    // Se agregan pasajeros manualmente aquí, respetando el formato del enunciado.
+    cout << "\nCreando pila de pasajeros..." << endl;
+
+    int cantidad;
+    cout << "Ingrese la cantidad de pasajeros a agregar: ";
+    cin >> cantidad;
+
+    for (int i = 0; i < cantidad; i++) {
+        int id, duracion, prioridad;
+        string pais;
+
+        cout << "\nPasajero " << i + 1 << ":" << endl;
+        cout << "ID: ";
+        cin >> id;
+        cout << "Duración del control en minutos: ";
+        cin >> duracion;
+        cout << "País de destino: ";
+        cin >> pais;
+        cout << "Prioridad del país de destino (1-30): ";
+        cin >> prioridad;
+
+        // Crear pasajero y apilarlo en la Pila
+        Pasajero nuevoPasajero(id, 0, duracion, pais, prioridad);
+        pilaPasajeros.apilar(nuevoPasajero);
+    }
+
+    cout << "\nPila creada correctamente con " << cantidad << " pasajeros.\n";
 }
+
 
 void Aeropuerto::mostrarPilaPasajeros() {
     cout << "Mostrando pasajeros que llegarán al aeropuerto:" << endl;
