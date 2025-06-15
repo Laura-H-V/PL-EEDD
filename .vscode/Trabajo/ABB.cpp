@@ -147,6 +147,34 @@ void ABB::calcularTiempoMedioPorPais(NodoABB* nodo) {
     calcularTiempoMedioPorPais(nodo->hd);
 }
 
+void ABB::agregarPasajeroManual() {
+    int id, duracion, prioridad;
+    string pais;
+
+    cout << "Ingrese el ID del pasajero: ";
+    cin >> id;
+    cout << "Ingrese la duración del control de aduanas (en minutos): ";
+    cin >> duracion;
+    cout << "Ingrese el país de destino: ";
+    cin >> pais;
+    cout << "Ingrese la prioridad del país de destino (1-30): ";
+    cin >> prioridad;
+
+    Pasajero nuevoPasajero(id, 0, duracion, pais, prioridad);
+
+    NodoABB* nodoDestino = buscar(pais);
+    if (nodoDestino == nullptr) {
+        insertar(pais);
+        nodoDestino = buscar(pais);
+    }
+
+    nodoDestino->listaPasajerosDestino.insertarPasajero(nuevoPasajero);
+
+    cout << "Pasajero con ID " << id << " añadido al ABB en el país " << pais << "." << endl;
+}
+
+
+
 Pasajero* ABB::buscarPasajero(int id) {
     return buscarPasajero(id, raiz);
 }

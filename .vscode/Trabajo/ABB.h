@@ -19,9 +19,9 @@ class ABB
         NodoABB* buscar(string pais, NodoABB* nodo);
 
         void mostrarPasajerosPorPais(string pais);
-
         void calcularTiempoMedioPorPais();
         void calcularTiempoMedioPorPais(NodoABB* nodo);
+        void agregarPasajeroManual();
 
         Pasajero* buscarPasajero(int id);
         Pasajero* buscarPasajero(int id, NodoABB* nodo);
