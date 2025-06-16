@@ -21,7 +21,6 @@ int Pasajero::getTiempoTotal()  { return tiempoTotal; }
 void Pasajero::setDuracionControl(int duracion) { duracionControl = duracion; }
 void Pasajero::setID(int id) { ID = id; }
 void Pasajero::setMinLlegada(int min) { minLlegada = min; }
-void Pasajero::setDuracionControl(int duracion) { duracionControl = duracion; }
 void Pasajero::setPais(string p) { pais = p; }
 void Pasajero::setPrioridad(int p) { prioridad = p; }
 void Pasajero::setIDBox(int idBox) { IDBox = idBox; }

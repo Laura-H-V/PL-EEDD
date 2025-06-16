@@ -3,7 +3,10 @@
 
 using namespace std;
 
-Aeropuerto::Aeropuerto() {}
+Aeropuerto::Aeropuerto() {
+    int minuto_actual = 0;
+    int intervalo_llegadas = 2;
+}
 
 void Aeropuerto::crearPilaPasajeros() {
     cout << "\nCreando pila de pasajeros..." << endl;
@@ -41,8 +44,11 @@ void Aeropuerto::mostrarPilaPasajeros() {
 }
 
 void Aeropuerto::simularPasoTiempo(int N) {
+    int intervalo_llegadas = 2; //Establecemos el tiempo que tarda en salir de la pila y añadirse al box
     cout << "Simulando el paso de " << N << " minutos..." << endl;
+    std::cout << "Intervalo de llegada de pasajeros: cada " << intervalo_llegadas << " minutos.\n";
     // Implementar la lógica según la simulación en el enunciado.
+    
 }
 
 void Aeropuerto::mostrarListaBoxes() {
@@ -53,7 +59,33 @@ void Aeropuerto::mostrarListaBoxes() {
 int Aeropuerto::obtenerBoxMenosOcupado() {
     // Implementación para encontrar el box con menos pasajeros en espera.
     cout << "Buscando el box con menos pasajeros en espera..." << endl;
-    return 0; // Retorna el ID del box con menos ocupación.
+    if (listaBoxes.esVacia()) {
+        std::cout << "No hay boxes en funcionamiento." << std::endl;
+        return;
+    }
+
+    pNodoLista actual = listaBoxes.obtenerCabeza();
+    Box* boxMenor = nullptr;
+    int minEnEspera = INT_MAX;
+
+    while (actual != nullptr) {
+        Box& box = actual->obtenerValor(); // Obtener referencia al Box en el nodo
+        int enEspera = box.getColaEsperaBox().get_longitud();
+
+        if (enEspera < minEnEspera) {
+            minEnEspera = enEspera;
+            boxMenor = &box; // Apuntamos al box con menos espera
+        }
+
+        actual = actual->getSiguiente();
+    }
+
+    if (boxMenor != nullptr) {
+        std::cout << "Box con menos pasajeros en espera: ID " << boxMenor->getIDBox()
+                  << " con " << minEnEspera << " en espera." << std::endl;
+    } else {
+        std::cout << "No se pudo determinar el box con menos espera." << std::endl;
+    }
 }
 
 void Aeropuerto::buscarPasajeroEnBoxes(int id) {
@@ -86,6 +118,7 @@ void Aeropuerto::buscarPasajeroABB(int id) {
 void Aeropuerto::calcularTiempoMedioPorPais() {
     abbPasajeros.calcularTiempoMedioPorPais();
 }
+
 
 void Aeropuerto::mostrarMenu() {
     int opcion = 0;
@@ -168,3 +201,4 @@ void Aeropuerto::mostrarMenu() {
         }
     }
 }
+

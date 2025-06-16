@@ -18,7 +18,7 @@ class NodoABB
 
     private:
         string nombre;
-        ListaPasajeros listaPasajerosDestino; // lista de pasajeros con este destino
+        //ListaPasajeros listaPasajerosDestino; // lista de pasajeros con este destino
         NodoABB *hi, *hd;
 };
 
