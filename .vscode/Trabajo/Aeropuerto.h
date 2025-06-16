@@ -24,7 +24,7 @@ public:
     void buscarPasajeroABB(int id); // Opción 11: Buscar pasajero en el ABB
     void calcularTiempoMedioPorPais(); // Opción 12: Calcular tiempo medio por país
     int GetLongitudColaBox(Box box);
-
+    void crearBox();
 private:
     ABB abbPasajeros; // ABB para pasajeros almacenados
     Pila pilaPasajeros; // Pila de pasajeros que llegan al aeropuerto

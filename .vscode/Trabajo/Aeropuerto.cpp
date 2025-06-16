@@ -108,6 +108,21 @@ int Aeropuerto::GetLongitudColaBox(Box box){
     return c.get_longitud();
 }
 
+void Aeropuerto::crearBox(){
+    bool llenos = true;
+    for(int i=0; i < listaBoxes.longitud(); i++ ){
+        if(listaBoxes.obtenerEnPosicion(i).getColaEsperaBox().get_longitud() < 2){
+            llenos = false;
+        }
+    }
+    if(llenos){
+        std::cout << "Box número " << listaBoxes.longitud() + 1
+        << " creado. " << std::endl;
+    }
+    listaBoxes.insertarFinal(Box(listaBoxes.longitud() + 1));
+
+}
+
 void Aeropuerto::buscarPasajeroEnBoxes(int id) {
     cout << "Buscando pasajero en boxes con ID " << id << "..." << endl;
     // Implementación para buscar en la lista de boxes.
