@@ -1,5 +1,6 @@
 #ifndef ABB_H
 #define ABB_H
+using namespace std;
 #include "NodoABB.h"
 #include "NodoABB.h"
 #include "Pasajero.h"
