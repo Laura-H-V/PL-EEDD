@@ -30,7 +30,6 @@ void ListaPasajeros::insertarPasajero(const Pasajero& p) {
     }
     listaPasajeros[cantidad] = p;
     cantidad++;
-    agregarAlABB(p);
 }
 
 // Eliminar pasajero por ID
@@ -76,26 +75,16 @@ int ListaPasajeros::contarPasajeros() const {
     return cantidad;
 }
 
-// Agregar pasajero al ABB por país de destino
-void ListaPasajeros::agregarAlABB(const Pasajero& p) {
-    arbolDestinos.insertar(p.getPais());
-}
-
-// Mostrar pasajeros con destino a un país específico
-void ListaPasajeros::mostrarPorPais(const string& pais) {
-    cout << "Pasajeros con destino a " << pais << ":" << endl;
-    // Recorrer ABB para mostrar pasajeros según país
-}
-
-// Calcular tiempo medio de estancia por país
-void ListaPasajeros::calcularTiempoMedioPorPais() {
-    // Recorrer ABB en preorden y calcular promedio
-}
-
 // Mostrar todos los pasajeros de la lista
 void ListaPasajeros::mostrarLista() {
+    if (cantidad == 0) {
+        cout << "La lista de pasajeros está vacía.\n";
+        return;
+    }
+
     for (int i = 0; i < cantidad; i++) {
-        cout << "ID: " << listaPasajeros[i].getID() << ", Destino: " << listaPasajeros[i].getPais() << endl;
+        cout << "ID: " << listaPasajeros[i].getID() 
+             << ", Destino: " << listaPasajeros[i].getPais() << endl;
     }
 }
 
@@ -105,13 +94,3 @@ Pasajero* ListaPasajeros::buscarPasajeroPorIndice(int index) {
     }
     return &listaPasajeros[index]; // Retorna la dirección del pasajero en la posición deseada
 }
-
-Pasajero* ListaPasajeros::buscarPasajeroPorID(int id) {
-    for (int i = 0; i < contarPasajeros(); i++) {
-        if (listaPasajeros[i].getID() == id) {
-            return &listaPasajeros[i];
-        }
-    }
-    return nullptr; // Si no se encuentra el pasajero, retorna nullptr.
-}
-

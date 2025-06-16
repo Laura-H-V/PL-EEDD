@@ -98,8 +98,23 @@ void Aeropuerto::simularControlCompleto() {
     // Implementación para procesar todos los pasajeros del sistema.
 }
 
-void Aeropuerto::agregarPasajeroABB() {
-    abbPasajeros.agregarPasajeroManual();
+void Aeropuerto::agregarPasajeroABB(const Pasajero& p) {
+    NodoABB* nodoDestino = abbPasajeros.buscar(p.getPais());
+    if (nodoDestino == nullptr) {
+        abbPasajeros.insertar(p.getPais());
+        nodoDestino = abbPasajeros.buscar(p.getPais());
+    }
+
+   nodoDestino->agregarPasajero(p);
+    cout << "Pasajero con ID " << p.getID() << " agregado al ABB en el país " << p.getPais() << ".\n";
+}
+
+void Aeropuerto::mostrarPasajerosPorPais(string pais) {
+    abbPasajeros.mostrarPasajerosPorPais(pais);
+}
+
+void Aeropuerto::calcularTiempoMedioPorPais() {
+    abbPasajeros.calcularTiempoMedioPorPais();
 }
 
 void Aeropuerto::mostrarABBOrdenado() {
@@ -107,21 +122,12 @@ void Aeropuerto::mostrarABBOrdenado() {
     abbPasajeros.verInOrden();
 }
 
-void Aeropuerto::mostrarPasajerosPorPais(string pais) {
-    abbPasajeros.mostrarPasajerosPorPais(pais);
-}
-
-void Aeropuerto::buscarPasajeroABB(int id) {
-    abbPasajeros.buscarPasajero(id);
-}
-
-void Aeropuerto::calcularTiempoMedioPorPais() {
-    abbPasajeros.calcularTiempoMedioPorPais();
-}
-
 
 void Aeropuerto::mostrarMenu() {
     int opcion = 0;
+    int id, duracion, prioridad;
+    string pais;
+
     while (opcion != 13) {
         cout << "\n===== MENÚ DEL AEROPUERTO =====" << endl;
         cout << "1. Crear pila de pasajeros" << endl;
@@ -147,49 +153,56 @@ void Aeropuerto::mostrarMenu() {
             case 2:
                 mostrarPilaPasajeros();
                 break;
-            case 3: {
+            case 3: 
                 int N;
                 cout << "Ingrese N minutos a simular: ";
                 cin >> N;
                 simularPasoTiempo(N);
                 break;
-            }
             case 4:
                 mostrarListaBoxes();
                 break;
             case 5:
                 obtenerBoxMenosOcupado();
                 break;
-            case 6: {
-                int id;
+            case 6:
                 cout << "Ingrese ID del pasajero: ";
                 cin >> id;
                 buscarPasajeroEnBoxes(id);
                 break;
-            }
             case 7:
                 simularControlCompleto();
                 break;
             case 8:
-                agregarPasajeroABB();
+                cout << "Ingrese los datos del pasajero:" << endl;
+                cout << "ID: ";
+                cin >> id;
+                cout << "Duración del control en minutos: ";
+                cin >> duracion;
+                cout << "País de destino: ";
+                cin >> pais;
+                cout << "Prioridad del país de destino (1-30): ";
+                cin >> prioridad;
+
+                // Crear el pasajero con los datos ingresados
+                Pasajero nuevoPasajero(id, 0, duracion, pais, prioridad);
+
+                // Llamar a la función con el pasajero creado
+                agregarPasajeroABB(nuevoPasajero);
                 break;
             case 9:
                 mostrarABBOrdenado();
                 break;
-            case 10: {
-                string pais;
+            case 10:
                 cout << "Ingrese el país: ";
                 cin >> pais;
                 mostrarPasajerosPorPais(pais);
                 break;
-            }
-            case 11: {
-                int id;
+            case 11:
                 cout << "Ingrese ID del pasajero: ";
                 cin >> id;
                 buscarPasajeroABB(id);
-                break;
-            }
+                break; 
             case 12:
                 calcularTiempoMedioPorPais();
                 break;
@@ -201,4 +214,5 @@ void Aeropuerto::mostrarMenu() {
         }
     }
 }
+
 

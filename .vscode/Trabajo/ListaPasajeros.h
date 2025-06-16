@@ -9,7 +9,6 @@ private:
     Pasajero* listaPasajeros; // Arreglo dinámico de pasajeros
     int capacidad;  // Capacidad actual del arreglo
     int cantidad;   // Número de pasajeros almacenados
-    ABB arbolDestinos; // Árbol binario para clasificación por destino
 
     void redimensionar(int nuevaCapacidad); // Expande o reduce el tamaño del arreglo
 
@@ -25,13 +24,6 @@ public:
     Pasajero* buscarPasajeroPorIndice(int index);
     bool esVacia() const;
     int contarPasajeros() const;
-    Pasajero* buscarPasajeroPorID(int id);
-
-
-    // Métodos relacionados con ABB
-    void agregarAlABB(const Pasajero& p);
-    void mostrarPorPais(const std::string& pais);
-    void calcularTiempoMedioPorPais();
 
     // Métodos auxiliares
     void mostrarLista();

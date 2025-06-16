@@ -19,7 +19,7 @@
         Pasajero(int ID, int minLlegada, int duracionControl, string pais, int prioridad); // Constructor con parámetros
 
         // Métodos de acceso
-        int getID();
+        int getID() const; // Agrega `const` al final de la declaración
         int getMinLlegada();
         int getDuracionControl();
         string getPais() const;

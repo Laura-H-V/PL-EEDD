@@ -10,7 +10,7 @@ Pasajero::Pasajero(int ID, int minLlegada, int duracionControl, string pais, int
     : ID(ID), minLlegada(minLlegada), duracionControl(duracionControl), pais(pais), prioridad(prioridad), IDBox(-1), tiempoTotal(0) {}
 
 // Métodos de acceso
-int Pasajero::getID() { return ID; }
+int Pasajero::getID() const { return ID; }
 int Pasajero::getMinLlegada() { return minLlegada; }
 int Pasajero::getDuracionControl() { return duracionControl; }
 string Pasajero::getPais() const{ return pais; }
