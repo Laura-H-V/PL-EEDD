@@ -111,6 +111,35 @@ int Aeropuerto::GetLongitudColaBox(Box box){
 void Aeropuerto::buscarPasajeroEnBoxes(int id) {
     cout << "Buscando pasajero en boxes con ID " << id << "..." << endl;
     // Implementación para buscar en la lista de boxes.
+    for (int i = 0; i < listaBoxes.longitud(); i++) {
+        Box box = listaBoxes.obtenerEnPosicion(i);
+
+        // 1. Revisar si el pasajero está siendo atendido
+        Pasajero* actual = box.getPasajeroActual();
+        if (actual != nullptr && actual->getID() == id) {
+            cout << "Pasajero " << id << " está siendo atendido en el box " << box.getIDBox() << endl;
+            cout << "Tiempo restante para salir: " << box.getTiempoRestante() << " minutos" << endl;
+            cout << "Destino: " << actual->getPais() << endl;
+            return;
+        }
+
+        // 2. Revisar la cola de espera
+        Cola cola = box.getCopiaColaEsperaBox();
+        bool encontrado = false;
+        while (!cola.es_vacia()) {
+            Pasajero p = cola.desencolar();
+            if (p.getID() == id) {
+                cout << "Pasajero " << id << " está esperando en el box " << box.getIDBox() << endl;
+                cout << "Destino: " << p.getPais() << endl;
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (encontrado) return;
+    }
+
+    cout << "Pasajero " << id << " no se encuentra en ningún box." << endl;
 }
 
 void Aeropuerto::simularControlCompleto() {
