@@ -1,6 +1,8 @@
 #ifndef LISTAPASAJEROS_H
 #define LISTAPASAJEROS_H
-
+#include <string>
+#include "Pasajero.h"  
+#include "ABB.h"
 
 class ListaPasajeros {
 private:

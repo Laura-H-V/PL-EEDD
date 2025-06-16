@@ -1,7 +1,5 @@
 #include "ListaPasajeros.h"
 #include <iostream>
-#include "Pasajero.h"
-#include "ABB.h"
 using namespace std;
 
 // Constructor
