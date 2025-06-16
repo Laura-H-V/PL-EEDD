@@ -80,7 +80,7 @@ int Cola::get_longitud() const {
         // Devuelve la longitud de la cola
         // No es necesario recorrer la cola, ya que se mantiene un contador de longitud
     return longitud;
-    }
+}
 
 bool Cola::es_vacia() const{ 
     return ((primero == NULL) && (ultimo == NULL));

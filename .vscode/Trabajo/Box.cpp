@@ -26,6 +26,10 @@ bool Box::colaEsperaVacia() const {
     return colaEsperaBox.es_vacia();
 }
 
+Cola& Box::getColaEsperaBox() {
+    return colaEsperaBox;
+}
+
 const Cola& Box::getColaEsperaBox() const {
     return colaEsperaBox;
 }

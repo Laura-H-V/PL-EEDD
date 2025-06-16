@@ -61,7 +61,7 @@ int Aeropuerto::obtenerBoxMenosOcupado() {
     cout << "Buscando el box con menos pasajeros en espera..." << endl;
     if (listaBoxes.esVacia()) {
         std::cout << "No hay boxes en funcionamiento." << std::endl;
-        return 0;
+        return -1;
     }
 
     pNodoLista actual = listaBoxes.obtenerCabeza();
@@ -83,10 +83,11 @@ int Aeropuerto::obtenerBoxMenosOcupado() {
     if (boxMenor != nullptr) {
         std::cout << "Box con menos pasajeros en espera: ID " << boxMenor->getIDBox()
                   << " con " << minEnEspera << " en espera." << std::endl;
+        return  boxMenor->getIDBox();
     } else {
         std::cout << "No se pudo determinar el box con menos espera." << std::endl;
+          return -1;
     }
-    return boxMenor->getIDBox();
 }
 
 void Aeropuerto::buscarPasajeroEnBoxes(int id) {
@@ -202,4 +203,10 @@ void Aeropuerto::mostrarMenu() {
         }
     }
 }
+
+
+
+
+
+
 

@@ -21,6 +21,7 @@ public:
     Pasajero* getPasajeroActual() const;
     int getTiempoRestante() const;
     bool colaEsperaVacia() const;
+    Cola& getColaEsperaBox();
     const Cola& getColaEsperaBox() const; // Método público para acceder a la cola
 
     // Métodos de modificación
