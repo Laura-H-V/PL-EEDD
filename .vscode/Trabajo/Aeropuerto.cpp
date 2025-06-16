@@ -57,7 +57,8 @@ void Aeropuerto::mostrarListaBoxes() {
 }
 
 int Aeropuerto::obtenerBoxMenosOcupado() {
-    // Implementación para encontrar el box con menos pasajeros en espera.
+    /*
+
     cout << "Buscando el box con menos pasajeros en espera..." << endl;
     if (listaBoxes.esVacia()) {
         std::cout << "No hay boxes en funcionamiento." << std::endl;
@@ -88,6 +89,19 @@ int Aeropuerto::obtenerBoxMenosOcupado() {
         std::cout << "No se pudo determinar el box con menos espera." << std::endl;
           return -1;
     }
+*/
+
+    for (int i = 0; i < listaBoxes.longitud() - 1; i++){
+
+        Box min = listaBoxes.obtenerEnPosicion(i);
+
+        if (GetLongitudColaBox(min) > GetLongitudColaBox(listaBoxes.obtenerEnPosicion(i + 1))){
+
+            min = listaBoxes.obtenerEnPosicion(i + 1);
+        }
+
+    }
+
 }
 
 void Aeropuerto::buscarPasajeroEnBoxes(int id) {
@@ -204,7 +218,15 @@ void Aeropuerto::mostrarMenu() {
     }
 }
 
+int Aeropuerto::GetLongitudColaBox(Box box){
 
+    Cola c = box.getColaEsperaBox();
+
+    return c.get_longitud();
+
+
+
+}
 
 
 

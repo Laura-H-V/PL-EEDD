@@ -27,7 +27,7 @@ public:
     Box inicio();
     Box fin();
     pNodoLista obtenerCabeza() const; 
-    
+    Box obtenerEnPosicion(int pos)
 };
 
 #endif // LISTA_H

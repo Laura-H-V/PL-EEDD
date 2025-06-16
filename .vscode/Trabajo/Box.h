@@ -22,6 +22,7 @@ public:
     int getTiempoRestante() const;
     bool colaEsperaVacia() const;
     Cola& getColaEsperaBox();
+    Cola getCopiaColaEsperaBox();
     const Cola& getColaEsperaBox() const; // Método público para acceder a la cola
 
     // Métodos de modificación

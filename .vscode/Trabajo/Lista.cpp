@@ -141,3 +141,17 @@ Box Lista::fin() {
 pNodoLista Lista::obtenerCabeza() const {
     return cabeza;
 }
+
+
+
+Box Lista::obtenerEnPosicion(int pos) {
+    if (pos < 0 || pos >= longitud()) {
+        throw std::out_of_range("Índice fuera de rango");
+    }
+
+    pNodoLista actual = cabeza;
+    for (int i = 0; i < pos; ++i) {
+        actual = actual->siguiente;
+    }
+    return actual->valor;
+}
