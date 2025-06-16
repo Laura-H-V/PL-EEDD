@@ -22,10 +22,8 @@ int main() {
     b1.mostrarInfo();
     b2.mostrarInfo();
 
-    // Los añadimos al aeropuerto y comprobamos
-    airport.agregarBox(b1);
-    airport.agregarBox(b2);
 
+    // Los añadimos al aeropuerto y comprobamos
     int elegido = airport.obtenerBoxMenosOcupado();
     if (elegido >= 0) {
         std::cout << "==> El box elegido es ID " << elegido << "\n";

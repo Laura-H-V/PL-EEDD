@@ -23,8 +23,7 @@ public:
     void mostrarPasajerosPorPais(string pais); // Opción 10: Mostrar pasajeros por país
     void buscarPasajeroABB(int id); // Opción 11: Buscar pasajero en el ABB
     void calcularTiempoMedioPorPais(); // Opción 12: Calcular tiempo medio por país
-
-    int GetLongitudColaBox(Box box)
+    int GetLongitudColaBox(Box box);
 
 private:
     ABB abbPasajeros; // ABB para pasajeros almacenados

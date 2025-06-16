@@ -90,18 +90,22 @@ int Aeropuerto::obtenerBoxMenosOcupado() {
           return -1;
     }
 */
-
+    Box min = listaBoxes.obtenerEnPosicion(0);
     for (int i = 0; i < listaBoxes.longitud() - 1; i++){
 
-        Box min = listaBoxes.obtenerEnPosicion(i);
+        min = listaBoxes.obtenerEnPosicion(i);
 
         if (GetLongitudColaBox(min) > GetLongitudColaBox(listaBoxes.obtenerEnPosicion(i + 1))){
-
             min = listaBoxes.obtenerEnPosicion(i + 1);
         }
 
     }
+    return min.getIDBox();
+}
 
+int Aeropuerto::GetLongitudColaBox(Box box){
+    Cola c = box.getColaEsperaBox();
+    return c.get_longitud();
 }
 
 void Aeropuerto::buscarPasajeroEnBoxes(int id) {
@@ -216,16 +220,6 @@ void Aeropuerto::mostrarMenu() {
                 cout << "Opción no válida. Intente nuevamente." << endl;
         }
     }
-}
-
-int Aeropuerto::GetLongitudColaBox(Box box){
-
-    Cola c = box.getColaEsperaBox();
-
-    return c.get_longitud();
-
-
-
 }
 
 
