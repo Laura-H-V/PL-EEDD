@@ -20,7 +20,7 @@ public:
     // Métodos de gestión
     void insertarPasajero(const Pasajero& p);
     void eliminarPasajero(int id);
-    Pasajero* buscarPasajero(int id);
+    Pasajero* buscarPasajeroPorID(int id);
     Pasajero* buscarPasajeroPorIndice(int index);
     bool esVacia() const;
     int contarPasajeros() const;

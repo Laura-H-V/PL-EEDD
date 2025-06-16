@@ -1,8 +1,4 @@
 #include "ABB.h"
-#include "NodoABB.h"
-#include "Pasajero.h"
-#include "ListaPasajeros.h"
-
 
 ABB::ABB() //crea arbol vacio
 {

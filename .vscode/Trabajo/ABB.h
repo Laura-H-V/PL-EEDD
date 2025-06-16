@@ -1,7 +1,9 @@
 #ifndef ABB_H
 #define ABB_H
 #include "NodoABB.h"
-
+#include "NodoABB.h"
+#include "Pasajero.h"
+#include "ListaPasajeros.h"
 
 
 class ABB

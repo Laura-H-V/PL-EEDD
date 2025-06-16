@@ -56,7 +56,7 @@ void ListaPasajeros::eliminarPasajero(int id) {
 }
 
 // Buscar pasajero por ID
-Pasajero* ListaPasajeros::buscarPasajero(int id) {
+Pasajero* ListaPasajeros::buscarPasajeroPorID(int id) {
     for (int i = 0; i < cantidad; i++) {
         if (listaPasajeros[i].getID() == id) {
             return &listaPasajeros[i];
