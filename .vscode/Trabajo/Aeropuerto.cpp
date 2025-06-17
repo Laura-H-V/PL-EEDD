@@ -381,6 +381,8 @@ void Aeropuerto::mostrarMenu() {
     int opcion = 0;
     while (opcion != 13) {
         cout << "\n===== MENÚ DEL AEROPUERTO =====" << endl;
+        cout << "13. Salir" << endl;
+        cout << "Seleccione una opción: ";
         cout << "1. Crear pila de pasajeros" << endl;
         cout << "2. Mostrar pasajeros en pila" << endl;
         cout << "3. Simular paso del tiempo" << endl;
@@ -393,8 +395,7 @@ void Aeropuerto::mostrarMenu() {
         cout << "10. Mostrar pasajeros por país" << endl;
         cout << "11. Buscar pasajero en ABB" << endl;
         cout << "12. Calcular tiempo medio por país" << endl;
-        cout << "13. Salir" << endl;
-        cout << "Seleccione una opción: ";
+
         cin >> opcion;
 
         switch (opcion) {
@@ -458,8 +459,3 @@ void Aeropuerto::mostrarMenu() {
         }
     }
 }
-
-
-
-
-
