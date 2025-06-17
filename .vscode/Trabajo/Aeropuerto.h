@@ -29,6 +29,7 @@ public:
     void avanzarTiempoPila();
     void borrarBoxesLibres();
     int insertarEnCola(Pasajero p);
+    bool todosBoxesLibres();
 private:
     ABB abbPasajeros; // ABB para pasajeros almacenados
     Pila pilaPasajeros; // Pila de pasajeros que llegan al aeropuerto

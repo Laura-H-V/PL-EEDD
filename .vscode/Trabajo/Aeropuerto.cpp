@@ -288,6 +288,19 @@ void Aeropuerto::simularControlCompleto() {
     }
 }
 
+bool Aeropuerto::todosBoxesLibres() {
+    for (int i = 0; i < listaBoxes.longitud(); i++) {
+        Box& box = listaBoxes.obtenerEnPosicion(i);
+        
+        if (!box.estaLibre() || box.getColaEsperaBox().get_longitud() > 0) {
+            return false; // Al menos un box tiene pasajeros dentro o en espera
+        }
+    }
+
+    return true; // Todos los boxes están vacíos
+}
+
+
 
 void Aeropuerto::agregarPasajeroABB() {
     abbPasajeros.agregarPasajeroManual();
