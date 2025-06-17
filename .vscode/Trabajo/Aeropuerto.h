@@ -32,6 +32,9 @@ public:
     bool todosBoxesLibres();
     int getTiempoTotalPasajeros();
     int getNumeroPasajeros();
+    void mostrarEntrada(Pasajero p, Box b);
+    void mostrarSalida(Pasajero p, Box b);
+
 private:
     ABB abbPasajeros; // ABB para pasajeros almacenados
     Pila pilaPasajeros; // Pila de pasajeros que llegan al aeropuerto

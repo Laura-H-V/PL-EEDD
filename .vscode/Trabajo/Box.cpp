@@ -4,17 +4,17 @@
 using namespace std;
 
 // Constructor por defecto
-Box::Box() : IDBox(-1), pasajeroActual(nullptr), tiempoRestante(0) {}
+Box::Box() : IDBox(-1), pasajeroActual(), tiempoRestante(0) {}
 
 // Constructor con ID específico
-Box::Box(int id) : IDBox(id), pasajeroActual(nullptr), tiempoRestante(0) {}
+Box::Box(int id) : IDBox(id), pasajeroActual(), tiempoRestante(0) {}
 
 // Métodos de acceso
 int Box::getIDBox() const {
     return IDBox;
 }
 
-Pasajero* Box::getPasajeroActual() const {
+Pasajero Box::getPasajeroActual() const {
     return pasajeroActual;
 }
 
@@ -40,16 +40,17 @@ void Box::asignarPasajero(const Pasajero& p) {
         cout << "El box está ocupado. No se puede asignar otro pasajero." << endl;
         return;
     }
-    pasajeroActual = new Pasajero(p);
+    pasajeroActual = p;
     tiempoRestante = p.getDuracionControl();
+    ocupado = true;
 }
 
 // Libera el box cuando el pasajero termina su proceso
 void Box::liberarBox() {
-    if (pasajeroActual) {
-        cout << "Pasajero " << pasajeroActual->getID() << " ha salido del box " << IDBox << "." << endl;
-        pasajeroActual = nullptr;
+    if (!estaLibre()) {
+        cout << "Pasajero " << pasajeroActual.getID() << " ha salido del box " << IDBox << "." << endl;
         tiempoRestante = 0;
+        ocupado = false;
 
         // Si hay pasajeros en espera, asignar el siguiente
         if (!colaEsperaVacia()) {
@@ -61,7 +62,7 @@ void Box::liberarBox() {
 
 // Actualiza el tiempo restante de atención
 void Box::actualizarTiempo(int minutos) {
-    if (pasajeroActual) {
+    if (!estaLibre()) {
         tiempoRestante -= minutos;
         if (tiempoRestante == 0) {
             liberarBox();
@@ -71,7 +72,7 @@ void Box::actualizarTiempo(int minutos) {
 
 // Verifica si el box está libre
 bool Box::estaLibre() const {
-    return pasajeroActual == nullptr;
+    return !ocupado;
 }
 
 // Agrega un pasajero a la cola de espera ordenado por prioridad
@@ -90,8 +91,8 @@ Pasajero Box::obtenerPrimerPasajeroEnEspera() {
 // Muestra la información del box
 void Box::mostrarInfo() const {
     cout << "Box ID: " << IDBox << endl;
-    if (pasajeroActual) {
-        cout << "Atendiendo a pasajero ID " << pasajeroActual->getID()
+    if (!estaLibre()) {
+        cout << "Atendiendo a pasajero ID " << pasajeroActual.getID()
              << " - Tiempo restante: " << tiempoRestante << " minutos" << endl;
     } else {
         cout << "Box libre." << endl;
@@ -106,5 +107,4 @@ void Box::mostrarInfo() const {
 
 // Destructor
 Box::~Box() {
-    pasajeroActual = nullptr;
 }

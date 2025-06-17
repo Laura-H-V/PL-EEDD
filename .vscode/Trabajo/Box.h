@@ -7,9 +7,10 @@
 class Box {
 private:
     int IDBox;
-    Pasajero* pasajeroActual; // Pasajero que está siendo atendido
+    Pasajero pasajeroActual; // Pasajero que está siendo atendido
     Cola colaEsperaBox; // Cola de espera de pasajeros
     int tiempoRestante; // Tiempo restante de atención del pasajero actual
+    bool ocupado; // Para saber si hay algún pasajero siendo atendido
 
 public:
     // Constructores
@@ -18,7 +19,7 @@ public:
 
     // Métodos de acceso
     int getIDBox() const;
-    Pasajero* getPasajeroActual() const;
+    Pasajero getPasajeroActual() const;
     int getTiempoRestante() const;
     bool colaEsperaVacia() const;
     Cola getCopiaColaEsperaBox();

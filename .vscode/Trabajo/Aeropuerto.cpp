@@ -72,14 +72,14 @@ int Aeropuerto::getTiempoTotalPasajeros() {
 
     // Recorrer todos los boxes para sumar los tiempos de pasajeros atendidos
     for (int i = 0; i < listaBoxes.longitud(); i++) {
-        Box& box = listaBoxes.obtenerEnPosicion(i);
+        Box box = listaBoxes.obtenerEnPosicion(i);
 
         if (!box.estaLibre()) {  
-            Pasajero& pasajero = box.getPasajeroActual();
+            Pasajero pasajero = box.getPasajeroActual();
 
             // Solo sumamos si el pasajero ya terminó el control
-            if (pasajero.getTiempoTotal() > 0) {
-                tiempoTotal += pasajero.calcularTiempoEstancia(); 
+            if ( pasajero.getTiempoTotal() > 0) {
+                tiempoTotal +=  pasajero.calcularTiempoEstancia();
             }
         }
     }
@@ -92,13 +92,13 @@ int Aeropuerto::getNumeroPasajeros() {
 
     // Recorrer todos los boxes y contar solo los pasajeros atendidos
     for (int i = 0; i < listaBoxes.longitud(); i++) {
-        Box& box = listaBoxes.obtenerEnPosicion(i);
+        Box box = listaBoxes.obtenerEnPosicion(i);
 
         if (!box.estaLibre()) {  
-            Pasajero& pasajero = box.getPasajeroActual();
+            Pasajero pasajero = box.getPasajeroActual();
 
             // Contar solo pasajeros que ya terminaron el control
-            if (pasajero.getTiempoTotal() > 0) {
+            if ( pasajero.getTiempoTotal() > 0) {
                 totalPasajeros++;
             }
         }
@@ -115,9 +115,10 @@ void Aeropuerto::avanzarTiempoPasajerosBox(Box& box) {
     int tiempoRestante = box.getTiempoRestante();
     box.actualizarTiempo(--tiempoRestante);
 
-    //if (box.getTiempoRestante() == 0) {
-    //    liberarBox(box);
-    //}  esto ya lo hace actualizarTiempo creo
+    if (box.getTiempoRestante() == 0) {
+        //actualizarTiempo ya libera el box
+        mostrarSalida(box.getPasajeroActual(), box);
+    }  
 }
 
 void Aeropuerto::avanzarTiempoPila() {
@@ -134,14 +135,14 @@ void Aeropuerto::avanzarTiempoPila() {
                 if (box.colaEsperaVacia() || box.getColaEsperaBox().inicio().getPrioridad() < proximoPasajero.getPrioridad()) {
                     box.asignarPasajero(box.getColaEsperaBox().inicio());
                     box.getColaEsperaBox().desencolar();
-                    imprimirEntrada(proximoPasajero, box);
+                    mostrarEntrada(proximoPasajero, box);
                     atendido = true;
                     break;
                 }
             } else {
                 box.asignarPasajero(box.getColaEsperaBox().inicio());
                 box.getColaEsperaBox().desencolar();
-                imprimirEntrada(box.getPasajeroActual(), box);
+                mostrarEntrada(box.getPasajeroActual(), box);
             }
         }
 
@@ -150,6 +151,16 @@ void Aeropuerto::avanzarTiempoPila() {
             crearBox();
         }
     }
+}
+
+void Aeropuerto::mostrarEntrada(Pasajero p, Box b){
+     cout << "\nEntra el pasajero " << p.getID() << " en el box "<< b.getIDBox() << " y en el minuto  "<<
+     minuto_actual << endl;
+}
+
+void Aeropuerto::mostrarSalida(Pasajero p, Box b){
+    cout << "\nSale el pasajero " << p.getID() << " en el box "<< b.getIDBox() << " y en el minuto  "<<
+     minuto_actual << endl;
 }
 
 void Aeropuerto::borrarBoxesLibres() {
@@ -280,11 +291,11 @@ void Aeropuerto::buscarPasajeroEnBoxes(int id) {
         Box box = listaBoxes.obtenerEnPosicion(i);
 
         // 1. Revisar si el pasajero está siendo atendido
-        Pasajero* actual = box.getPasajeroActual();
-        if (actual != nullptr && actual->getID() == id) {
+        Pasajero actual = box.getPasajeroActual();
+        if ( actual.getID() == id) {
             cout << "Pasajero " << id << " está siendo atendido en el box " << box.getIDBox() << endl;
             cout << "Tiempo restante para salir: " << box.getTiempoRestante() << " minutos" << endl;
-            cout << "Destino: " << actual->getPais() << endl;
+            cout << "Destino: " << actual.getPais() << endl;
             return;
         }
 
@@ -332,7 +343,7 @@ void Aeropuerto::simularControlCompleto() {
 
 bool Aeropuerto::todosBoxesLibres() {
     for (int i = 0; i < listaBoxes.longitud(); i++) {
-        Box& box = listaBoxes.obtenerEnPosicion(i);
+        Box box = listaBoxes.obtenerEnPosicion(i);
         
         if (!box.estaLibre() || box.getColaEsperaBox().get_longitud() > 0) {
             return false; // Al menos un box tiene pasajeros dentro o en espera
