@@ -22,10 +22,10 @@ public:
     int getTiempoRestante() const;
     bool colaEsperaVacia() const;
     Cola getCopiaColaEsperaBox();
-    const Cola& getColaEsperaBox() const; // Método público para acceder a la cola
+    Cola& getColaEsperaBox(); // Método público para acceder a la cola
 
     // Métodos de modificación
-    void asignarPasajero(Pasajero* p);
+    void asignarPasajero(const Pasajero& p);
     void liberarBox();
     void actualizarTiempo(int minutos);
     bool estaLibre() const;

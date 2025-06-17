@@ -21,7 +21,7 @@
         // Métodos de acceso
         int getID() const; // Agrega `const` al final de la declaración
         int getMinLlegada();
-        int getDuracionControl();
+        int getDuracionControl() const;
         string getPais() const;
         int getPrioridad();
         int getTiempoTotal();

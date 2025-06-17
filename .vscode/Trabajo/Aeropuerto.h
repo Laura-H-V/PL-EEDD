@@ -33,6 +33,8 @@ private:
     ABB abbPasajeros; // ABB para pasajeros almacenados
     Pila pilaPasajeros; // Pila de pasajeros que llegan al aeropuerto
     Lista listaBoxes; // Lista de boxes en funcionamiento
+    int minuto_actual;
+    int intervalo_llegadas; 
 };
 
 #endif // AEROPUERTO_H

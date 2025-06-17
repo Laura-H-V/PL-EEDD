@@ -22,7 +22,7 @@ int Box::getTiempoRestante() const {
     return tiempoRestante;
 }
 
-bool Box::colaEsperaVacia() const {
+bool Box::colaEsperaVacia() const  {
     return colaEsperaBox.es_vacia();
 }
 
@@ -30,18 +30,18 @@ Cola Box::getCopiaColaEsperaBox() {
     return colaEsperaBox;
 }
 
-const Cola& Box::getColaEsperaBox() const {
+Cola& Box::getColaEsperaBox() {
     return colaEsperaBox;
 }
 
 // Asigna un pasajero al box y establece su tiempo de control
-void Box::asignarPasajero(Pasajero* p) {
+void Box::asignarPasajero(const Pasajero& p) {
     if (!estaLibre()) {
         cout << "El box está ocupado. No se puede asignar otro pasajero." << endl;
         return;
     }
-    pasajeroActual = p;
-    tiempoRestante = p->getDuracionControl();
+    pasajeroActual = new Pasajero(p);
+    tiempoRestante = p.getDuracionControl();
 }
 
 // Libera el box cuando el pasajero termina su proceso
@@ -54,7 +54,7 @@ void Box::liberarBox() {
         // Si hay pasajeros en espera, asignar el siguiente
         if (!colaEsperaVacia()) {
             Pasajero siguiente = obtenerPrimerPasajeroEnEspera();
-            asignarPasajero(&siguiente);
+            asignarPasajero(siguiente);
         }
     }
 }

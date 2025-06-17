@@ -148,7 +148,7 @@ int Aeropuerto::insertarEnCola(Pasajero p) {
     }
 
     // Insertar pasajero en la cola del box seleccionado
-    Box& box = listaBoxes.obtenerEnPosicion(pos);
+    Box box = listaBoxes.obtenerEnPosicion(pos);
     box.agregarPasajeroAEspera(p);
 
     cout << "\nPasajero con ID " << p.getID() << " ha entrado en la cola de espera del Box " 
@@ -271,7 +271,7 @@ void Aeropuerto::simularControlCompleto() {
 
         // Paso del tiempo de los pasajeros en los boxes
         for (int j = 0; j < listaBoxes.longitud(); j++) {
-            Box& box = listaBoxes.obtenerEnPosicion(j);
+            Box box = listaBoxes.obtenerEnPosicion(j);
             avanzarTiempoPasajerosBox(box);
         }
 
