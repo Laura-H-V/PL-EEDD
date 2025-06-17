@@ -67,6 +67,29 @@ void Aeropuerto::simularPasoTiempo(int minutos) {
     }
 }
 
+int Aeropuerto::getTiempoTotalPasajeros() {
+    int tiempoTotal = 0;
+
+    // Recorrer todos los boxes para sumar los tiempos de pasajeros atendidos
+    for (int i = 0; i < listaBoxes.longitud(); i++) {
+        Box& box = listaBoxes.obtenerEnPosicion(i);
+
+        if (!box.estaLibre()) {  
+            Pasajero& pasajero = box.getPasajeroActual();
+
+            // Solo sumamos si el pasajero ya terminó el control
+            if (pasajero.getTiempoTotal() > 0) {
+                tiempoTotal += pasajero.calcularTiempoEstancia(); 
+            }
+        }
+    }
+
+    return tiempoTotal;
+}
+
+
+
+
 void Aeropuerto::avanzarTiempoPasajerosBox(Box& box) {
     if (box.estaLibre()) return;
 
