@@ -283,9 +283,28 @@ void Aeropuerto::buscarPasajeroEnBoxes(int id) {
 }
 
 void Aeropuerto::simularControlCompleto() {
-    cout << "Simulando el control hasta que no haya pasajeros pendientes..." << endl;
-    // Implementación para procesar todos los pasajeros del sistema.
+    while (!pilaPasajeros.esVacia() || !todosBoxesLibres()) {
+        minuto_actual++;
+
+        // Paso del tiempo de los pasajeros en los boxes
+        for (int j = 0; j < listaBoxes.longitud(); j++) {
+            Box& box = listaBoxes.obtenerEnPosicion(j);
+            avanzarTiempoPasajerosBox(box);
+        }
+
+        avanzarTiempoPila();
+    }
+
+    borrarBoxesLibres();
+    crearBoxAsistencia();
+
+    // Si la pila está vacía y no quedan pasajeros en boxes
+    if (pilaPasajeros.esVacia() && todosBoxesLibres()) {
+        cout << "\nTodos los pasajeros han sido atendidos.\n";
+        cout << "\nTiempo medio de espera: " << getTiempoTotalPasajeros() / getNumeroPasajeros() << " minutos.\n";
+    }
 }
+
 
 void Aeropuerto::agregarPasajeroABB() {
     abbPasajeros.agregarPasajeroManual();
