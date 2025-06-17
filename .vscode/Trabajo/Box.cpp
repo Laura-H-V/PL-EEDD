@@ -63,7 +63,7 @@ void Box::liberarBox() {
 void Box::actualizarTiempo(int minutos) {
     if (pasajeroActual) {
         tiempoRestante -= minutos;
-        if (tiempoRestante <= 0) {
+        if (tiempoRestante == 0) {
             liberarBox();
         }
     }

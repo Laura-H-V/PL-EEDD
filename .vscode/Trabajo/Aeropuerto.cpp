@@ -49,7 +49,7 @@ void Aeropuerto::simularPasoTiempo(int minutos) {
 
         // Paso del tiempo de los pasajeros en los boxes
         for (int j = 0; j < listaBoxes.longitud(); j++) {
-            Box& box = listaBoxes.obtenerEnPosicion(j);
+            Box box = listaBoxes.obtenerEnPosicion(j);
             avanzarTiempoPasajerosBox(box);
         }
 
@@ -58,7 +58,7 @@ void Aeropuerto::simularPasoTiempo(int minutos) {
     }
 
     borrarBoxesLibres();
-    crearBoxAsistencia();
+    crearBox();
 
     // Si la pila está vacía y no quedan pasajeros en boxes
     if (pilaPasajeros.esVacia() && todosBoxesLibres()) {
@@ -71,11 +71,11 @@ void Aeropuerto::avanzarTiempoPasajerosBox(Box& box) {
     if (box.estaLibre()) return;
 
     int tiempoRestante = box.getTiempoRestante();
-    box.setTiempoRestante(--tiempoRestante);
+    box.actualizarTiempo(--tiempoRestante);
 
-    if (box.getTiempoRestante() == 0) {
-        liberarBox(box);
-    }
+    //if (box.getTiempoRestante() == 0) {
+    //    liberarBox(box);
+    //}  esto ya lo hace actualizarTiempo creo
 }
 
 void Aeropuerto::avanzarTiempoPila() {
@@ -86,7 +86,7 @@ void Aeropuerto::avanzarTiempoPila() {
         bool atendido = false;
 
         for (int j = 0; j < listaBoxes.longitud(); j++) {
-            Box& box = listaBoxes.obtenerEnPosicion(j);
+            Box box = listaBoxes.obtenerEnPosicion(j);
 
             if (box.estaLibre() && box.getColaEsperaBox().get_longitud() <= 2) {
                 if (box.colaEsperaVacia() || box.getColaEsperaBox().inicio().getPrioridad() < proximoPasajero.getPrioridad()) {
@@ -105,14 +105,14 @@ void Aeropuerto::avanzarTiempoPila() {
 
         if (!atendido) {
             insertarEnCola(proximoPasajero);
-            crearBoxAsistencia();
+            crearBox();
         }
     }
 }
 
 void Aeropuerto::borrarBoxesLibres() {
     for (int i = listaBoxes.longitud() - 1; i >= 0; i--) {
-        Box& box = listaBoxes.obtenerEnPosicion(i);
+        Box box = listaBoxes.obtenerEnPosicion(i);
 
         if (box.estaLibre() && box.getColaEsperaBox().get_longitud() == 0 &&
             listaBoxes.longitud() > 1 && pilaPasajeros.esVacia()) {
