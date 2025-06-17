@@ -87,6 +87,25 @@ int Aeropuerto::getTiempoTotalPasajeros() {
     return tiempoTotal;
 }
 
+int Aeropuerto::getNumeroPasajeros() {
+    int totalPasajeros = 0;
+
+    // Recorrer todos los boxes y contar solo los pasajeros atendidos
+    for (int i = 0; i < listaBoxes.longitud(); i++) {
+        Box& box = listaBoxes.obtenerEnPosicion(i);
+
+        if (!box.estaLibre()) {  
+            Pasajero& pasajero = box.getPasajeroActual();
+
+            // Contar solo pasajeros que ya terminaron el control
+            if (pasajero.getTiempoTotal() > 0) {
+                totalPasajeros++;
+            }
+        }
+    }
+
+    return totalPasajeros;
+}
 
 
 

@@ -31,6 +31,7 @@ public:
     int insertarEnCola(Pasajero p);
     bool todosBoxesLibres();
     int getTiempoTotalPasajeros();
+    int getNumeroPasajeros();
 private:
     ABB abbPasajeros; // ABB para pasajeros almacenados
     Pila pilaPasajeros; // Pila de pasajeros que llegan al aeropuerto
