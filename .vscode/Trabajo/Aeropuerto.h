@@ -25,6 +25,10 @@ public:
     void calcularTiempoMedioPorPais(); // Opción 12: Calcular tiempo medio por país
     int GetLongitudColaBox(Box box);
     void crearBox();
+    void avanzarTiempoPasajerosBox(Box& box);
+    void avanzarTiempoPila();
+    void borrarBoxesLibres();
+    int insertarEnCola(Pasajero p);
 private:
     ABB abbPasajeros; // ABB para pasajeros almacenados
     Pila pilaPasajeros; // Pila de pasajeros que llegan al aeropuerto
