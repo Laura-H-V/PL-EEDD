@@ -11,30 +11,53 @@ Aeropuerto::Aeropuerto() {
 void Aeropuerto::crearPilaPasajeros() {
     cout << "\nCreando pila de pasajeros..." << endl;
 
-    int cantidad;
-    cout << "Ingrese la cantidad de pasajeros a agregar: ";
-    cin >> cantidad;
+    //int cantidad;
+    //cout << "Ingrese la cantidad de pasajeros a agregar: ";
+    //cin >> cantidad;
 
-    for (int i = 0; i < cantidad; i++) {
-        int id, duracion, prioridad;
-        string pais;
+    //for (int i = 0; i < cantidad; i++) {
+    //    int id, duracion, prioridad;
+    //    string pais;
 
-        cout << "\nPasajero " << i + 1 << ":" << endl;
-        cout << "ID: ";
-        cin >> id;
-        cout << "Duración del control en minutos: ";
-        cin >> duracion;
-        cout << "País de destino: ";
-        cin >> pais;
-        cout << "Prioridad del país de destino (1-30): ";
-        cin >> prioridad;
+    //    cout << "\nPasajero " << i + 1 << ":" << endl;
+    //    cout << "ID: ";
+    //    cin >> id;
+    //    cout << "Duración del control en minutos: ";
+     //   cin >> duracion;
+    //    cout << "País de destino: ";
+    //    cin >> pais;
+    //    cout << "Prioridad del país de destino (1-30): ";
+     //   cin >> prioridad;
 
         // Crear pasajero y apilarlo en la Pila
-        Pasajero nuevoPasajero(id, 0, duracion, pais, prioridad);
-        pilaPasajeros.apilar(nuevoPasajero);
-    }
+       // Pasajero nuevoPasajero(id, 0, duracion, pais, prioridad);
+       // pilaPasajeros.apilar(nuevoPasajero);
+   // }
 
-    cout << "\nPila creada correctamente con " << cantidad << " pasajeros.\n";
+    //cout << "\nPila creada correctamente con " << cantidad << " pasajeros.\n";
+    //Pasajero(id, llegada, duracion, prioridad, pais)
+    //Pasajero(ID, minLlegada, duracionControl, pais, prioridad) 
+    Pasajero p1(1, 0, 10, "Indonesia", 6);
+    Pasajero p2(2, 0, 15, "Portugal", 1);
+    Pasajero p3(3, 5, 29, "Australia", 7);
+    Pasajero p4(4, 7, 8, "Sudafrica", 5);
+    Pasajero p5(5, 9, 16, "Indonesia", 7);
+    Pasajero p6(6, 9, 13, "Noruega", 6);
+    Pasajero p7(7, 10, 10, "Australia", 6);
+    Pasajero p8(8, 10, 15, "Italia", 1);
+    Pasajero p9(9, 15, 29, "Alemania", 7);
+    Pasajero p10(10, 17, 8,"Australia", 5);
+    Pasajero p11(11, 19, 16, "Italia", 7);
+    Pasajero p12(12, 19, 13, "Alemania", 6);
+
+    Pasajero p13(13, 20, 12, "Francia", 4);
+    Pasajero p14(14, 22, 18, "Indonesia", 5);
+    Pasajero p15(15, 25, 22, "Portugal", 8);
+    Pasajero p16(16, 27, 11, "Australia", 2);
+    Pasajero p17(17, 30, 19, "Sudafrica", 3);
+    Pasajero p18(18, 32, 14, "Noruega", 6);
+    Pasajero p19(19, 35, 20, "Alemania", 7);
+    Pasajero p20(20, 37, 25, "Italia", 9);
 }
 
 
@@ -381,7 +404,6 @@ void Aeropuerto::mostrarMenu() {
     int opcion = 0;
     while (opcion != 13) {
         cout << "\n===== MENÚ DEL AEROPUERTO =====" << endl;
-        cout << "13. Salir" << endl;
         cout << "Seleccione una opción: ";
         cout << "1. Crear pila de pasajeros" << endl;
         cout << "2. Mostrar pasajeros en pila" << endl;
@@ -395,6 +417,7 @@ void Aeropuerto::mostrarMenu() {
         cout << "10. Mostrar pasajeros por país" << endl;
         cout << "11. Buscar pasajero en ABB" << endl;
         cout << "12. Calcular tiempo medio por país" << endl;
+        cout << "13. Salir" << endl;
 
         cin >> opcion;
 
