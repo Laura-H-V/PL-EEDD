@@ -26,8 +26,11 @@ void ABB::verInOrden() { verInOrden(raiz);}
 void ABB::verInOrden(NodoABB *arb)// M�todo para ver Arbol empezando por su izquirda, despu�s pasamos por la raiz y por ultimo por la rama derecha
 {
     if (arb) {
-       verInOrden(arb->hi);//Recursion para la rama izquierda
-       cout<< arb->nombre<<endl;//Mostrar nombre
+       verInOrden(arb->hi); //Recursion para la rama izq
+        cout << "País: " << arb->nombre << endl;
+        cout << "Pasajeros:\n";
+        arb->listaPasajerosDestino.mostrarLista(); 
+        cout << "--------------------------\n";
         verInOrden(arb->hd);// Recursion para la rama derecha
     }
 }
@@ -41,9 +44,12 @@ void ABB::verInOrden(NodoABB *arb)// M�todo para ver Arbol empezando por su iz
 }*/
 
 
-void ABB::insertar(string nombre)
-{
-    insertar(nombre, raiz);
+void ABB::insertar(string nombre){
+     if (raiz == NULL) {
+        raiz = new NodoABB(nombre);
+    } else {
+        insertar(nombre, raiz);
+    }
 }
 void ABB::insertar(string nombre, NodoABB *nodo)//En este m�todo insertamos un nombre en el ABB para que siga ordenado
 {

@@ -14,7 +14,7 @@ public:
     void apilar(Pasajero v);
     void desapilar();
     bool esVacia();
-    Pasajero* mostrar(); // Muestra el proceso en la cima
+    Pasajero* mostrar(); // Muestra el pasajero en la cima
     int longitud(); // Devuelve la longitud de la pila
     void mostrarTodos();
 };
