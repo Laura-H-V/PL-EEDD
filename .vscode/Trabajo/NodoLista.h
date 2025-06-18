@@ -11,7 +11,7 @@ private:
     friend class Lista; // La clase Lista puede acceder a los datos privados de NodoLista
 
 public:
-    NodoLista(); // Constructor vacío
+    NodoLista(); 
     NodoLista(Box p, NodoLista* sig = nullptr, NodoLista* ant = nullptr);
     Box& obtenerValor(); // Obtener el valor del nodo
     NodoLista* obtenerSiguiente();

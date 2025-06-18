@@ -6,13 +6,13 @@
 class NodoPila {
 private:
     Pasajero valor;
-    NodoPila *siguiente; // Next
-    friend class Pila; // Friend class
+    NodoPila *siguiente; 
+    friend class Pila;
 
 public:
-    NodoPila(); // Constructor vacío
+    NodoPila(); 
     NodoPila(Pasajero p, NodoPila* sig = nullptr);
-    ~NodoPila(); // Destructor
+    ~NodoPila();
 };
 
 typedef NodoPila* pNodoPila; // Pointer to NodoPila

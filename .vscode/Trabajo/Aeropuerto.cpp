@@ -5,34 +5,9 @@ using namespace std;
 
 Aeropuerto::Aeropuerto() : minuto_actual(0), intervalo_llegadas(2) {}
 
+//Crea la pila de pasajeros 
 void Aeropuerto::crearPilaPasajeros() {
     cout << "\nCreando pila de pasajeros..." << endl;
-
-    //int cantidad;
-    //cout << "Ingrese la cantidad de pasajeros a agregar: ";
-    //cin >> cantidad;
-
-    //for (int i = 0; i < cantidad; i++) {
-    //    int id, duracion, prioridad;
-    //    string pais;
-
-    //    cout << "\nPasajero " << i + 1 << ":" << endl;
-    //    cout << "ID: ";
-    //    cin >> id;
-    //    cout << "Duración del control en minutos: ";
-     //   cin >> duracion;
-    //    cout << "País de destino: ";
-    //    cin >> pais;
-    //    cout << "Prioridad del país de destino (1-30): ";
-     //   cin >> prioridad;
-
-        // Crear pasajero y apilarlo en la Pila
-       // Pasajero nuevoPasajero(id, 0, duracion, pais, prioridad);
-       // pilaPasajeros.apilar(nuevoPasajero);
-   // }
-
-    //cout << "\nPila creada correctamente con " << cantidad << " pasajeros.\n";
-    //Pasajero(id, llegada, duracion, prioridad, pais)
     //Pasajero(ID, minLlegada, duracionControl, pais, prioridad) 
     Pasajero p1(1, 0, 10, "Indonesia", 6);
     Pasajero p2(2, 0, 15, "Portugal", 1);
@@ -84,12 +59,13 @@ void Aeropuerto::crearPilaPasajeros() {
     }
 }
 
-
+//Muestra los pasajeros de la pila
 void Aeropuerto::mostrarPilaPasajeros() {
     cout << "Mostrando pasajeros que llegarán al aeropuerto:" << endl;
     pilaPasajeros.mostrarTodos();
 }
 
+//Dimula el paso de n minutos en el sistema
 void Aeropuerto::simularPasoTiempo(int minutos) {
     for (int i = 0; i < minutos; i++) {
         minuto_actual++;
@@ -113,6 +89,7 @@ void Aeropuerto::simularPasoTiempo(int minutos) {
     }
 }
 
+//Devuelve el tiempo total de todos los pasajeros
 int Aeropuerto::getTiempoTotalPasajeros() {
     int tiempoTotal = 0;
 
@@ -133,6 +110,7 @@ int Aeropuerto::getTiempoTotalPasajeros() {
     return tiempoTotal;
 }
 
+//Numero de pasajeros que hay atendidos
 int Aeropuerto::getNumeroPasajeros() {
     int totalPasajeros = 0;
 
@@ -154,7 +132,7 @@ int Aeropuerto::getNumeroPasajeros() {
 }
 
 
-
+//Avanza el timepo de la simulacion manejando los boxes y los pasajeros en ellos
 void Aeropuerto::avanzarTiempoPasajerosBox(Box& box) {
     if (box.estaLibre()) return;
 
@@ -167,6 +145,7 @@ void Aeropuerto::avanzarTiempoPasajerosBox(Box& box) {
     }  
 }
 
+//Se encarga de manejar a los pasjeros de la pila en la simulacion del tiempo
 void Aeropuerto::avanzarTiempoPila() {
     while (!pilaPasajeros.esVacia() && pilaPasajeros.mostrar()->getMinLlegada() <= minuto_actual) {
         Pasajero proximoPasajero = *pilaPasajeros.mostrar();
@@ -260,12 +239,13 @@ int Aeropuerto::insertarEnCola(Pasajero p) {
 }
 
 
-
+//Muestra los boxes que hay
 void Aeropuerto::mostrarListaBoxes() {
     cout << "Lista de boxes en funcionamiento:" << endl;
     listaBoxes.mostrar();
 }
 
+//Devuelve el id del box con menos pasajeros esperando
 int Aeropuerto::obtenerBoxMenosOcupado() {
 
     if (listaBoxes.longitud() == 0) {
@@ -303,6 +283,7 @@ void Aeropuerto::crearBox(){
 
 }
 
+//Busca un pasajero en la lista de boxes por su id
 void Aeropuerto::buscarPasajeroEnBoxes(int id) {
     cout << "Buscando pasajero en boxes con ID " << id << "..." << endl;
     // Implementación para buscar en la lista de boxes.
@@ -351,30 +332,7 @@ void Aeropuerto::simularCompleto() {
     }
 }
 
-void Aeropuerto::simularControlCompleto() {
-    while (!pilaPasajeros.esVacia() || !todosBoxesLibres()) {
-        minuto_actual++;
-        cout << "[DEBUG] Minuto: " << minuto_actual << ", pila vacía: " << pilaPasajeros.esVacia() 
-        << ", boxes libres: " << todosBoxesLibres() << endl;
-        // Paso del tiempo de los pasajeros en los boxes
-        for (int j = 0; j < listaBoxes.longitud(); j++) {
-            Box& box = listaBoxes.obtenerEnPosicion(j);
-            avanzarTiempoPasajerosBox(box);
-        }
-
-        avanzarTiempoPila();
-    }
-
-    borrarBoxesLibres();
-    crearBox();
-
-    // Si la pila está vacía y no quedan pasajeros en boxes
-    if (pilaPasajeros.esVacia() && todosBoxesLibres()) {
-        cout << "\nTodos los pasajeros han sido atendidos.\n";
-        cout << "\nTiempo medio de espera: " << getTiempoTotalPasajeros() / getNumeroPasajeros() << " minutos.\n";
-    }
-}
-
+//Mira si estan todos libres
 bool Aeropuerto::todosBoxesLibres() {
     for (int i = 0; i < listaBoxes.longitud(); i++) {
         Box box = listaBoxes.obtenerEnPosicion(i);

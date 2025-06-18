@@ -17,7 +17,7 @@ public:
     void mostrarListaBoxes(); // Opción 4: Mostrar lista de boxes
     int obtenerBoxMenosOcupado(); // Opción 5: Mostrar box con menos pasajeros en espera
     void buscarPasajeroEnBoxes(int id); // Opción 6: Buscar pasajero en lista de boxes
-    void simularControlCompleto(); // Opción 7: Simular todo el control hasta que no haya pasajeros pendientes
+    void simularCompleto(); // Opción 7: Simular todo el control hasta que no haya pasajeros pendientes
     void agregarPasajeroABB(); // Opción 8: Añadir pasajero al ABB manualmente
     void mostrarABBOrdenado(); // Opción 9: Mostrar ABB ordenado por país
     void mostrarPasajerosPorPais(string pais); // Opción 10: Mostrar pasajeros por país
@@ -34,7 +34,6 @@ public:
     int getNumeroPasajeros();
     void mostrarEntrada(Pasajero p, Box b);
     void mostrarSalida(Pasajero p, Box b);
-    void simularCompleto();
 
 private:
     ABB abbPasajeros; // ABB para pasajeros almacenados

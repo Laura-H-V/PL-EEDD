@@ -42,7 +42,6 @@ void Pila::mostrarTodos() {
 
     pNodoPila actual = cima;
     while (actual != nullptr) {
-        // Suponiendo que Pasajero tiene un método mostrar() o al menos getNombre()
         std::cout << "Pasajero: " << actual->valor.getID()
                   << ", MinLlegada: " << actual->valor.getMinLlegada() << std::endl;
         actual = actual->siguiente;
