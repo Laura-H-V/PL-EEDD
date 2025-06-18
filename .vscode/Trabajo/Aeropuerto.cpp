@@ -184,9 +184,13 @@ void Aeropuerto::avanzarTiempoPila() {
                     pilaPasajeros.desapilar();
                 }
             } else {
-                box.asignarPasajero(box.getColaEsperaBox().inicio());
-                box.getColaEsperaBox().desencolar();
-                mostrarEntrada(box.getPasajeroActual(), box);
+                if (!box.getColaEsperaBox().es_vacia()) {
+                    Pasajero siguiente = box.getColaEsperaBox().inicio();
+                    box.asignarPasajero(siguiente);
+                    box.getColaEsperaBox().desencolar();
+                    mostrarEntrada(siguiente, box);
+                }
+
             }
         }
 
