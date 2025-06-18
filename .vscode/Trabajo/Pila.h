@@ -16,6 +16,7 @@ public:
     bool esVacia();
     Pasajero* mostrar(); // Muestra el proceso en la cima
     int longitud(); // Devuelve la longitud de la pila
+    void mostrarTodos();
 };
 
 #endif // PILA_H

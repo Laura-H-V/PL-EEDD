@@ -85,7 +85,7 @@ void Aeropuerto::crearPilaPasajeros() {
 
 void Aeropuerto::mostrarPilaPasajeros() {
     cout << "Mostrando pasajeros que llegarán al aeropuerto:" << endl;
-    pilaPasajeros.mostrar();
+    pilaPasajeros.mostrarTodos();
 }
 
 void Aeropuerto::simularPasoTiempo(int minutos) {
@@ -366,7 +366,8 @@ void Aeropuerto::buscarPasajeroEnBoxes(int id) {
 void Aeropuerto::simularControlCompleto() {
     while (!pilaPasajeros.esVacia() || !todosBoxesLibres()) {
         minuto_actual++;
-
+        cout << "[DEBUG] Minuto: " << minuto_actual << ", pila vacía: " << pilaPasajeros.esVacia() 
+        << ", boxes libres: " << todosBoxesLibres() << endl;
         // Paso del tiempo de los pasajeros en los boxes
         for (int j = 0; j < listaBoxes.longitud(); j++) {
             Box box = listaBoxes.obtenerEnPosicion(j);
