@@ -58,6 +58,28 @@ void Aeropuerto::crearPilaPasajeros() {
     Pasajero p18(18, 32, 14, "Noruega", 6);
     Pasajero p19(19, 35, 20, "Alemania", 7);
     Pasajero p20(20, 37, 25, "Italia", 9);
+
+    // Apilar todos los pasajeros
+    pilaPasajeros.apilar(p1);
+    pilaPasajeros.apilar(p2);
+    pilaPasajeros.apilar(p3);
+    pilaPasajeros.apilar(p4);
+    pilaPasajeros.apilar(p5);
+    pilaPasajeros.apilar(p6);
+    pilaPasajeros.apilar(p7);
+    pilaPasajeros.apilar(p8);
+    pilaPasajeros.apilar(p9);
+    pilaPasajeros.apilar(p10);
+    pilaPasajeros.apilar(p11);
+    pilaPasajeros.apilar(p12);
+    pilaPasajeros.apilar(p13);
+    pilaPasajeros.apilar(p14);
+    pilaPasajeros.apilar(p15);
+    pilaPasajeros.apilar(p16);
+    pilaPasajeros.apilar(p17);
+    pilaPasajeros.apilar(p18);
+    pilaPasajeros.apilar(p19);
+    pilaPasajeros.apilar(p20);
 }
 
 
@@ -439,7 +461,9 @@ void Aeropuerto::mostrarMenu() {
                 mostrarListaBoxes();
                 break;
             case 5:
-                obtenerBoxMenosOcupado();
+                int idMin;
+                idMin = obtenerBoxMenosOcupado();
+                cout << "El box menos ocupado es el que tiene el id" <<idMin<< endl;
                 break;
             case 6: {
                 int id;
