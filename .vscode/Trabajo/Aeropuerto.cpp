@@ -3,10 +3,7 @@
 
 using namespace std;
 
-Aeropuerto::Aeropuerto() {
-    int minuto_actual = 0;
-    int intervalo_llegadas = 2;
-}
+Aeropuerto::Aeropuerto() : minuto_actual(0), intervalo_llegadas(2) {}
 
 void Aeropuerto::crearPilaPasajeros() {
     cout << "\nCreando pila de pasajeros..." << endl;
@@ -80,6 +77,11 @@ void Aeropuerto::crearPilaPasajeros() {
     pilaPasajeros.apilar(p18);
     pilaPasajeros.apilar(p19);
     pilaPasajeros.apilar(p20);
+
+    //creamos un box si no hay ninguno 
+    if (listaBoxes.longitud() == 0) {
+        crearBox();
+    }
 }
 
 
@@ -91,10 +93,9 @@ void Aeropuerto::mostrarPilaPasajeros() {
 void Aeropuerto::simularPasoTiempo(int minutos) {
     for (int i = 0; i < minutos; i++) {
         minuto_actual++;
-
         // Paso del tiempo de los pasajeros en los boxes
         for (int j = 0; j < listaBoxes.longitud(); j++) {
-            Box box = listaBoxes.obtenerEnPosicion(j);
+            Box& box = listaBoxes.obtenerEnPosicion(j);
             avanzarTiempoPasajerosBox(box);
         }
 
@@ -167,22 +168,20 @@ void Aeropuerto::avanzarTiempoPasajerosBox(Box& box) {
 }
 
 void Aeropuerto::avanzarTiempoPila() {
-    while (!pilaPasajeros.esVacia() && pilaPasajeros.mostrar()->getMinLlegada() == minuto_actual) {
+    while (!pilaPasajeros.esVacia() && pilaPasajeros.mostrar()->getMinLlegada() <= minuto_actual) {
         Pasajero proximoPasajero = *pilaPasajeros.mostrar();
-        pilaPasajeros.desapilar();
 
         bool atendido = false;
 
         for (int j = 0; j < listaBoxes.longitud(); j++) {
-            Box box = listaBoxes.obtenerEnPosicion(j);
+            Box& box = listaBoxes.obtenerEnPosicion(j);
 
             if (box.estaLibre() && box.getColaEsperaBox().get_longitud() <= 2) {
                 if (box.colaEsperaVacia() || box.getColaEsperaBox().inicio().getPrioridad() < proximoPasajero.getPrioridad()) {
                     box.asignarPasajero(box.getColaEsperaBox().inicio());
-                    box.getColaEsperaBox().desencolar();
                     mostrarEntrada(proximoPasajero, box);
                     atendido = true;
-                    break;
+                    pilaPasajeros.desapilar();
                 }
             } else {
                 box.asignarPasajero(box.getColaEsperaBox().inicio());
@@ -193,6 +192,7 @@ void Aeropuerto::avanzarTiempoPila() {
 
         if (!atendido) {
             insertarEnCola(proximoPasajero);
+            pilaPasajeros.desapilar();
             crearBox();
         }
     }
@@ -246,7 +246,7 @@ int Aeropuerto::insertarEnCola(Pasajero p) {
     }
 
     // Insertar pasajero en la cola del box seleccionado
-    Box box = listaBoxes.obtenerEnPosicion(pos);
+    Box& box = listaBoxes.obtenerEnPosicion(pos);
     box.agregarPasajeroAEspera(p);
 
     cout << "\nPasajero con ID " << p.getID() << " ha entrado en la cola de espera del Box " 
@@ -296,15 +296,18 @@ int Aeropuerto::obtenerBoxMenosOcupado() {
           return -1;
     }
 */
-    Box min = listaBoxes.obtenerEnPosicion(0);
-    for (int i = 0; i < listaBoxes.longitud() - 1; i++){
-
-        min = listaBoxes.obtenerEnPosicion(i);
-
-        if (GetLongitudColaBox(min) > GetLongitudColaBox(listaBoxes.obtenerEnPosicion(i + 1))){
-            min = listaBoxes.obtenerEnPosicion(i + 1);
+    if (listaBoxes.longitud() == 0) {
+            cout << "No hay boxes en funcionamiento actualmente.\n";
+            return -1;
         }
+    Box min = listaBoxes.obtenerEnPosicion(0);
 
+    for (int i = 1; i < listaBoxes.longitud(); i++) {
+        Box actual = listaBoxes.obtenerEnPosicion(i);
+
+        if (GetLongitudColaBox(actual) < GetLongitudColaBox(min)) {
+            min = actual;
+        }
     }
     return min.getIDBox();
 }
@@ -321,11 +324,10 @@ void Aeropuerto::crearBox(){
             llenos = false;
         }
     }
-    if(llenos){
-        std::cout << "Box número " << listaBoxes.longitud() + 1
-        << " creado. " << std::endl;
-    }
+    if (llenos) {
+    std::cout << "Box número " << listaBoxes.longitud() + 1 << " creado. " << std::endl;
     listaBoxes.insertarFinal(Box(listaBoxes.longitud() + 1));
+}
 
 }
 
@@ -370,7 +372,7 @@ void Aeropuerto::simularControlCompleto() {
         << ", boxes libres: " << todosBoxesLibres() << endl;
         // Paso del tiempo de los pasajeros en los boxes
         for (int j = 0; j < listaBoxes.longitud(); j++) {
-            Box box = listaBoxes.obtenerEnPosicion(j);
+            Box& box = listaBoxes.obtenerEnPosicion(j);
             avanzarTiempoPasajerosBox(box);
         }
 
@@ -464,7 +466,11 @@ void Aeropuerto::mostrarMenu() {
             case 5:
                 int idMin;
                 idMin = obtenerBoxMenosOcupado();
-                cout << "El box menos ocupado es el que tiene el id" <<idMin<< endl;
+                if (idMin == -1) {
+                    cout << "No hay boxes en funcionamiento actualmente." << endl;
+                } else {
+                    cout << "El box menos ocupado es el que tiene el id-" << idMin << endl;
+                }
                 break;
             case 6: {
                 int id;

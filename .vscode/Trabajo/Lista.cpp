@@ -144,7 +144,7 @@
 
 
 
-    Box Lista::obtenerEnPosicion(int pos) {
+    Box& Lista::obtenerEnPosicion(int pos) {
         if (pos < 0 || pos >= longitud()) {
             throw std::out_of_range("Índice fuera de rango");
         }
