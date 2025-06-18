@@ -34,6 +34,7 @@ public:
     int getNumeroPasajeros();
     void mostrarEntrada(Pasajero p, Box b);
     void mostrarSalida(Pasajero p, Box b);
+    void simularCompleto();
 
 private:
     ABB abbPasajeros; // ABB para pasajeros almacenados

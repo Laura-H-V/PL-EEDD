@@ -41,7 +41,7 @@ void Box::asignarPasajero(const Pasajero& p) {
         return;
     }
     pasajeroActual = p;
-    tiempoRestante = p.getDuracionControl();
+    tiempoRestante = p.getDuracionControl();    
     ocupado = true;
 }
 

@@ -267,39 +267,7 @@ void Aeropuerto::mostrarListaBoxes() {
 }
 
 int Aeropuerto::obtenerBoxMenosOcupado() {
-    /*
 
-    cout << "Buscando el box con menos pasajeros en espera..." << endl;
-    if (listaBoxes.esVacia()) {
-        std::cout << "No hay boxes en funcionamiento." << std::endl;
-        return -1;
-    }
-
-    pNodoLista actual = listaBoxes.obtenerCabeza();
-    Box* boxMenor = nullptr;
-    int minEnEspera = INT_MAX;
-
-    while (actual != nullptr) {
-        Box& box = actual->obtenerValor(); // Obtener referencia al Box en el nodo
-        int enEspera = box.getColaEsperaBox().get_longitud();
-
-        if (enEspera < minEnEspera) {
-            minEnEspera = enEspera;
-            boxMenor = &box; // Apuntamos al box con menos espera
-        }
-
-        actual = actual->getSiguiente();
-    }
-
-    if (boxMenor != nullptr) {
-        std::cout << "Box con menos pasajeros en espera: ID " << boxMenor->getIDBox()
-                  << " con " << minEnEspera << " en espera." << std::endl;
-        return  boxMenor->getIDBox();
-    } else {
-        std::cout << "No se pudo determinar el box con menos espera." << std::endl;
-          return -1;
-    }
-*/
     if (listaBoxes.longitud() == 0) {
             cout << "No hay boxes en funcionamiento actualmente.\n";
             return -1;
@@ -367,6 +335,20 @@ void Aeropuerto::buscarPasajeroEnBoxes(int id) {
     }
 
     cout << "Pasajero " << id << " no se encuentra en ningún box." << endl;
+}
+
+//Simula todos los minutos del aeropuerto
+void Aeropuerto::simularCompleto() {
+    while (!pilaPasajeros.esVacia() || !todosBoxesLibres()){
+        simularPasoTiempo(1);
+        cout << "[DEBUG] Fin minuto " << minuto_actual << ": " 
+     << "pila vacía=" << pilaPasajeros.esVacia() 
+     << ", todos boxes libres=" << todosBoxesLibres() << endl;
+    }
+        if (pilaPasajeros.esVacia() && todosBoxesLibres()) {
+        cout << "\nTodos los pasajeros han sido atendidos.\n";
+        cout << "\nTiempo medio de espera: " << getTiempoTotalPasajeros() / getNumeroPasajeros() << " minutos.\n";
+    }
 }
 
 void Aeropuerto::simularControlCompleto() {
@@ -484,7 +466,7 @@ void Aeropuerto::mostrarMenu() {
                 break;
             }
             case 7:
-                simularControlCompleto();
+                simularCompleto();
                 break;
             case 8:
                 agregarPasajeroABB();
