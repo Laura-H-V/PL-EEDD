@@ -137,9 +137,9 @@ void Aeropuerto::avanzarTiempoPasajerosBox(Box& box) {
     if (box.estaLibre()) return;
 
     int tiempoRestante = box.getTiempoRestante();
-    box.actualizarTiempo(--tiempoRestante);
-
-    if (box.getTiempoRestante() == 0) {
+    box.actualizarTiempo(tiempoRestante);
+    
+    if (box.getTiempoRestante() <= 0) {
         //actualizarTiempo ya libera el box
         mostrarSalida(box.getPasajeroActual(), box);
     }  
